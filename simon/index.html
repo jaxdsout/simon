@@ -15,7 +15,7 @@
         <header>
             <h1>SIMON</h1>
         </header>
-        
+
         <div class="tile-box">
             <div class="tile" id="yellow">
                 <audio preload="auto" id="sound-yellow"><source src="sounds/yellow.mp3" type="audio/mpeg"></audio>
@@ -33,10 +33,15 @@
 
         <div class="input-box">
             <div class="slider">
-                <label for="difficulty">DIFFICULTY</label>
-                <input type="range" class="difficulty-slider" name="difficulty" min="1" max="3" value="1" step="1" />
+                <label for="difficulty-slider">DIFFICULTY</label>
+                <input type="range" name="difficulty-slider" id="difficulty-slider" min="1" max="3" value="1" step="1" />
+                <div class="slider-labels">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                </div>
             </div>
-            <span class="start-dot"></span>
+            <button class="start-dot" type="text"></button>
             <span class="timer"> :00 </span>
         </div>
     </main>
