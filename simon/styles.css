@@ -1,0 +1,82 @@
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Dosis', sans-serif;
+    font-size: 4em;
+    margin: 100px 0px 10px 0px;
+}
+
+
+/* TILE BOX */
+.tile-box{
+    display: flex;
+    flex-direction: row;
+}
+
+.tile {
+    width: 350px;
+    height: 450px;
+}
+
+.yellow {
+    background-color: rgb(255, 193, 37);
+    border: .5rem solid goldenrod;
+}
+.yellow:hover {
+    background-color: rgb(255, 208, 88);
+}
+.red {
+    background-color: red;
+    border: .5rem solid crimson;
+}
+.red:hover {
+    background-color: rgb(249, 73, 73);
+}
+.blue {
+    background-color: blue;
+    border: .5rem solid darkblue;
+}
+.blue:hover {
+    background-color: rgb(53, 53, 255);
+}
+.green {
+    background-color: green;
+    border: .5rem solid darkgreen;
+}
+.green:hover {
+    background-color: rgb(25, 174, 25);
+}
+
+
+/* INPUT BOX */
+
+
+.input-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 500px;
+    margin: 40px 0px 0px 120px;
+}
+
+.start-dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0px 30px 0px 30px;
+}
+
+.timer {
+    font-family: 'Dosis', sans-serif;
+    font-size: 2.5rem;
+    margin-top: -1rem;
+}
