@@ -1,16 +1,14 @@
-
+// QUERY SELECTORS
+const tileBox = document.querySelector('.tile-box');
 const yellow = document.querySelector("#yellow");
 const red = document.querySelector("#red");
 const blue = document.querySelector("#blue");
 const green = document.querySelector("#green");
+
+
 const start = document.querySelector(".start-dot");
 const timer = document.querySelector(".timer");
 const slider = document.querySelector(".difficulty-slider");
-
-
-// let playerSequence = [];
-// const colors = ['yellow', 'blue', 'red', 'green'];
-
 
 // CHOOSE STARTING LEVEL OF DIFFICULTY // 
 
@@ -57,8 +55,13 @@ const slider = document.querySelector(".difficulty-slider");
 
 // START THE GAME // 
 
-start.addEventListener("click", tileSequence)
-
+let gameStarted = false;
+start.addEventListener("click", function() {
+    tileSequence();
+    gameStarted = true;
+    start.disabled = true
+    start.style.backgroundColor = 'black';
+});
 
 // TILE SEQUENCE GENERATION // 
 
@@ -75,4 +78,18 @@ function tileSequence () {
     }
     console.log(sequence)
 }
+
+// const colors = ['yellow', 'blue', 'red', 'green'];
+
+
+// CLICKING TILES
+
+function handleTileClick(event) {
+    const clickedColor = event.target.id;
+    const audioElement = document.getElementById(`sound-${clickedColor}`);
+    audioElement.play();
+}
+
+tileBox.addEventListener('click', handleTileClick);
+
 
