@@ -53,19 +53,35 @@ If the user succeeds, the series will become progressively longer and more compl
 
 #### AS A PLAYER, I WANT TO...
 
-- be able to change difficulty level
+- be able to select difficulty level
 - be able to start the game
 - be able to SEE & HEAR which tile the game is activating
 - be able to select which tile I want
 - be able to SEE & HEAR my responses being recorded (live feedback on buttons)
-- have my responses be recorded correctly
+- have my responses be recorded/cached correctly
+- be able to see how much time I have left to return the visual pattern
+- want to know whenver I completed the sequence of 13 (fanfare or something amazing)
 
 
 
 #### AS A GAME, I WANT TO...
 
-- prevent users from do-overs (NO GO BACKSIES)
-- prevent users from seeing the visual pattern more than once
-- be purely random regardless of difficulty level so user can never remember sequencing
+- prevent players from do-overs (NO GO BACKSIES)
+- prevent players from seeing the current visual pattern more than once
+- be able to auto compare users inputs versus mine (the correct way)
+- be purely random regardless of difficulty level so player can never remember sequencing
 - don't want to signify when player can begin repeating visual pattern; just start counting the clock
-- don't want to let player to know they got it right; simply move on to the next tile(s) in the visual pattern
+- don't want to inform player they got it right; simply move on to the next tile(s) in the visual pattern
+
+
+
+
+## STRETCH GOALS
+
+- instead of a standard timer (00:00), it would be cool if the tiles started to slowly fade into background (LUDICROUS MODE?)
+
+- try to achieve the shape of traditional Simon game (oval shaped with irregular tile-buttons)
+
+- make the difficulty scale a slider
+
+- more visual aesthetics
