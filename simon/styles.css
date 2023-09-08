@@ -26,32 +26,32 @@ h1 {
     height: 450px;
 }
 
-.yellow {
+#yellow {
     background-color: rgb(255, 193, 37);
     border: .5rem solid goldenrod;
 }
-.yellow:hover {
+#yellow:hover {
     background-color: rgb(255, 208, 88);
 }
-.red {
+#red {
     background-color: red;
     border: .5rem solid crimson;
 }
-.red:hover {
+#red:hover {
     background-color: rgb(249, 73, 73);
 }
-.blue {
+#blue {
     background-color: blue;
     border: .5rem solid darkblue;
 }
-.blue:hover {
+#blue:hover {
     background-color: rgb(53, 53, 255);
 }
-.green {
+#green {
     background-color: green;
     border: .5rem solid darkgreen;
 }
-.green:hover {
+#green:hover {
     background-color: rgb(25, 174, 25);
 }
 
@@ -79,4 +79,8 @@ h1 {
     font-family: 'Dosis', sans-serif;
     font-size: 2.5rem;
     margin-top: -1rem;
+}
+
+.slider {
+    font-family: 'Dosis', sans-serif;
 }
