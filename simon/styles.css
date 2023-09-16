@@ -30,31 +30,30 @@ h1 {
     background-color: rgb(255, 193, 37);
     border: .5rem solid goldenrod;
 }
-#yellow:hover {
+#yellow:hover, #yellow.highlighted {
     background-color: rgb(255, 208, 88);
 }
 #red {
     background-color: red;
     border: .5rem solid crimson;
 }
-#red:hover {
+#red:hover, #red.highlighted {
     background-color: rgb(249, 73, 73);
 }
 #blue {
     background-color: blue;
     border: .5rem solid darkblue;
 }
-#blue:hover {
+#blue:hover, #blue.highlighted {
     background-color: rgb(53, 53, 255);
 }
 #green {
     background-color: green;
     border: .5rem solid darkgreen;
 }
-#green:hover {
+#green:hover, #green.highlighted {
     background-color: rgb(25, 174, 25);
 }
-
 
 /* INPUT BOX */
 
