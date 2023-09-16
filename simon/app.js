@@ -1,176 +1,119 @@
-// QUERY SELECTORS
-
 const tileBox = document.querySelector('.tile-box');
-const yellow = document.querySelector("#yellow");
-const red = document.querySelector("#red");
-const blue = document.querySelector("#blue");
-const green = document.querySelector("#green");
-
-
-const start = document.querySelector(".start-dot");
+const reset = document.querySelector(".reset-dot");
+let yellow = document.querySelector("#yellow");
+let red = document.querySelector("#red");
+let blue = document.querySelector("#blue");
+let green = document.querySelector("#green");
+let start = document.querySelector(".start-dot");
 let timer = document.querySelector(".timer");
 let slider = document.querySelector("#difficulty-slider");
-const reset = document.querySelector(".reset-dot")
 
-// CHOOSE STARTING LEVEL OF DIFFICULTY // 
-
-let currentLevel = 1;
-slider.addEventListener("input", function() {
-    currentLevel = parseInt(slider.value);
-})
-
-// TIMER //
-
+let level = 1;
 let timerInterval;
 let timerValue = 0;
+let gameStarted;
+let tiles = ['green', 'red', 'yellow', 'blue'];
+let sequence = [];
+let index = 0;
+let userSequence = [];
+
+slider.addEventListener("input", function() {
+        level = parseInt(slider.value);
+})
 
 function countdown() {
-    timerValue = (currentLevel === 1) ? 30 : 25;
+    timerValue = (level === 1) ? 30 : 25;
     timer.innerHTML = timerValue;
     timerInterval = setInterval(function () {
-        if (timerValue <= 0) {
-            clearInterval(timerInterval);
-        } else {
             timerValue--;
             timer.innerHTML = timerValue;
-        }
+            if (timerValue < 0) {
+                gameOver();
+            }
     }, 1000);
 }
 
-// START THE GAME // 
-let gameStarted;
 start.addEventListener("click", function() {
-    tileSequence();
-    // visualize();
-    countdown();
-    start.disabled = true;
-    slider.disabled = true;
-    start.style.backgroundColor = 'black';
-    gameStarted = true;
+        start.disabled = true;
+        slider.disabled = true;
+        start.style.backgroundColor = 'black';
+        gameStarted = true;
+        tileSequence();
+        visualize();
 });
 
-// TILE SEQUENCE GENERATION // 
 
-let sequence = [];
-let colorMapping = ['green', 'red', 'yellow', 'blue'];
-
-function tileSequence () {
-    let maxLimit = 12;
-    // let maxRando = 3;
-    // if (currentLevel === 2) {
-    //     maxRando = 2;
-    // } else if (currentLevel === 3) {
-    //     maxRando = 1;
-    // } 
-    for (let i = 0; i <= maxLimit; i++) {
-        const wildInteger = (i % 4) + 1;
-        sequence.push(wildInteger);
+function tileSequence() {
+    for (let i = 0; i < 13; i++) {
+        const wildNum = (i % 4) + 1;
+        sequence.push(wildNum);
     }
-    for (let i = sequence.length - 1; i > 0; i--) {
+        for (let i = sequence.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [sequence[i], sequence[j]] = [sequence[j], sequence[i]];
     }
-    const coloredSequence = sequence.map(wildInteger => colorMapping[wildInteger - 1])
-    console.log(coloredSequence)
+    sequence = sequence.map(wildNum => tiles[wildNum - 1]); 
+    console.log(sequence);
 }
 
+function visualize() {
+    if (index < sequence.length) {
+        const tileColor = sequence[index];
+        const tileElement = document.querySelector(`#${tileColor}`);
+        const tileSound = document.getElementById(`sound-${tileColor}`);
+        
+        tileElement.classList.add('highlighted');
+        tileSound.play();
+        
+        setTimeout(() => {
+            tileElement.classList.remove('highlighted');
+            index++;
+            console.log("Index:", index); // Log the current index
+        }, 500);
 
-// VISUALIZE THE TILES //
-
-/*function visualize() {
-    if (currentLevel === 1) {
-        // Initialize tile visual start count to 1
-        // Repeat the following steps until the end of the array:
-        //   - Visualize the next tile
-        //   - Computer waits for user input
-        // End of visualization for level 1
-    }
-    else if (currentLevel === 2) {
-        // Initialize tile visual start count to 2
-        // Repeat the following steps until reaching NUMBER 8 (7th in array) (5th iteration into the game):
-        //   - Visualize the next tile
-        //   - Computer waits for user input
-        // From 8th to 13th tiles (7th to 12th in the array), visualize 2 at a time:
-        //   - Visualize the next 2 tiles
-        //   - Computer waits for user input
-        // End of visualization for level 2
-    }
-    else if (currentLevel === 3) {
-        // Initialize tile visual start count to 3
-        // Repeat the following steps until reaching NUMBER 8 (7th in array):
-        //   - Visualize the next 2 tiles
-        //   - Computer waits for user input
-        // Once you get to the 8th tile (7th in the array), visualize 3 at a time:
-        //   - Visualize the next 3 tiles
-        //   - Computer waits for user input
-        // End of visualization for level 3
+        enableInput();
+        countdown();
+        console.log("User input enabled");
     }
 }
-*/
 
+function enableInput() {
+    tileBox.addEventListener("click", function (event) {
+        if (gameStarted) {
+          const clickedTile = event.target.id;
+          const inputSound = document.getElementById(`sound-${clickedTile}`);
+          inputSound.play();
+          console.log(userSequence);
+          userSequence.push(clickedTile);
+          checkUserInput();
+        }
+    });
+}
 
-// USER CLICKING THE TILES & LOGGING RESPONSE
-
-let userSequence = [];
-function handleTileClick(event) {
-    if (gameStarted === true) {
-        const clickedColor = event.target.id;
-        const audioElement = document.getElementById(`sound-${clickedColor}`);
-        audioElement.play();
-        userSequence.push(clickedColor);
-        console.log(userSequence);
-
-        // Check if the user sequence matches the generated sequence
-        const isCorrect = checkUserSequence();
-        if (isCorrect) {
-            // Continue the game or check for a win
-            if (userSequence.length === sequence.length) {
-                // User has completed the level
-                handleLevelCompletion();
-            }
+function checkUserInput() {
+    const correctTile = sequence[userSequence.length - 1];
+    const userTile = userSequence[userSequence.length - 1];
+    if (userTile !== correctTile) {
+        gameOver();
+    }
+    if (userSequence.length === sequence.length) {
+        if (userSequence.length === 12) {
+            gameWin()
         } else {
-            // User made a mistake, handle game over
-            handleGameOver();
+            index ++;
+            visualize();
+            resetClock();
         }
     }
 }
-tileBox.addEventListener('click', handleTileClick);
 
-// function checkUserSequence(){
-//     for each index i in the range from 0 to the length of userSequence - 1:
-//         if userSequence[i] is not equal to the color at sequence[i]:
-//             return false  # User sequence does not match the generated sequence
-//     return true  # User sequence matches the generated sequence
-// }
-
-
-// LEVEL COMPLETTION
-
-// function handleLevelUp() {
-//     # Clear the user's sequence
-//     clear userSequence
-
-//     # Check if the user has completed the game
-//     if length of sequence is greater than or equal to 13:
-//         call handleGameWin()  # User has won the game
-//     else:
-//         # Generate the next tile and add it to the sequence
-//         call tileSequence()
-        
-//         # Visualize the next tiles based on the current level
-//         call visualize()
-// }
-
-
-// GAME COMPLETION & RESET GAME
-
-function handleGameOver() {
-    console.log('Game over!');
+function gameOver() {
+    alert('Game over!');
     resetGame();
 }
 
-function handleGameWin() {
-    console.log('You win!');
+function gameWin() {
+    alert('You win!');
     resetGame();
 }
 
@@ -181,9 +124,12 @@ function resetGame() {
     start.disabled = false;
     slider.disabled = false;
     start.style.backgroundColor = '';
+    resetClock();
+}
+reset.addEventListener("click", resetGame)
+
+function resetClock() {
     clearInterval(timerInterval);
     timerValue = 0;
     timer.innerHTML = timerValue;
 }
-reset.addEventListener("click", resetGame)
-
