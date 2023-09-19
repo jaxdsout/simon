@@ -5,49 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css"/>
     <script defer src="app.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&display=swap" rel="stylesheet">
+    <audio preload="auto" id="sound-yellow" src="sounds/yellow.mp3"></audio>
+    <audio preload="auto" id="sound-blue" src="sounds/blue.mp3"></audio>
+    <audio preload="auto" id="sound-red" src="sounds/red.mp3"></audio>
+    <audio preload="auto" id="sound-green" src="sounds/green.mp3"></audio>
+
     <title>SIMON</title>
 </head>
 <body>
-    <main>
-
-        <header>
-            <h1>SIMON</h1>
-        </header>
-
-        <div class="tile-box">
-            <div class="tile" id="yellow">
-                <audio preload="auto" id="sound-yellow"><source src="sounds/yellow.mp3" type="audio/mpeg"></audio>
-            </div>
-            <div class="tile" id="blue">
-                <audio preload="auto" id="sound-blue"><source src="sounds/blue.mp3" type="audio/mpeg"></audio>
-            </div>
-            <div class="tile" id="red">
-                <audio preload="auto" id="sound-red"><source src="sounds/red.mp3" type="audio/mpeg"></audio>
-            </div>
-            <div class="tile" id="green">
-                <audio preload="auto" id="sound-green"><source src="sounds/green.mp3" type="audio/mpeg"></audio>
-            </div>
-        </div>
-
-        <div class="input-box">
-            <div class="slider">
-                <label for="difficulty-slider">DIFFICULTY</label>
-                <input type="range" id="difficulty-slider" min="1" max="3" value="1" step="1" />
-                <div class="slider-labels">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
+        <div id="outerrim">
+            <div class="tile" id="yellow"></div>
+            <div class="tile" id="blue"></div>
+            <div class="tile" id="red"></div>
+            <div class="tile" id="green"></div>
+            <div id ="innerrim">
+                <h1>SIMON</h1>
+                <div id="controls">
+                    <div id="slider-box">
+                        <p id="difficulty">DIFFICULTY</p>
+                        <input type="range" id="slider" min="1" max="3" value="1" step="1" />
+                        <div id="levels">
+                            <span>1</span>
+                            <span>2</span>
+                            <span>3</span>
+                        </div>
+                    <button id="reset-dot">R</button>
+                    <button id="start-dot">S</button>
+                    <span id="time">:</span><div id="timer">0</div>
                 </div>
             </div>
-            <button class="start-dot" type="text"></button>
-            <span>:</span><span class="timer">0</span>
-            <button class="reset-dot" type="text">R</button>
-
         </div>
-
-    </main>
 </body>
 </html>
