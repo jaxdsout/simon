@@ -1,39 +1,42 @@
 
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 900px;
-    text-align: center;
+#outerrim {
+    border-radius: 50%;
+    height: 700px;
+    width: 700px;
+    position: relative;
+    border-style: solid;
+    border-width: 20px;
+    margin: auto;
+    margin-top: 70px;
 }
-
-h1 {
-    font-family: 'Dosis', sans-serif;
-    font-size: 4em;
-    margin: 100px 0px 10px 0px;
-}
-
-
-/* TILE BOX */
-.tile-box{
-    display: flex;
-    flex-direction: row;
-}
-
-.tile {
-    width: 350px;
-    height: 450px;
-}
-
 #yellow {
-    background-color: rgb(255, 193, 37);
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    border-radius: 350px 0 0 0;
+    top: 50%;
+    left: 50%;
+    margin: -350px 0px 0px -350px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    background: rgb(255, 193, 37);
     border: .5rem solid goldenrod;
 }
 #yellow:hover, #yellow.highlighted {
     background-color: rgb(255, 208, 88);
 }
 #red {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    border-radius: 0 350px 0 0;
+    top: 50%;
+    left: 50%;
+    margin: -350px 0px 0px 0px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
     background-color: red;
     border: .5rem solid crimson;
 }
@@ -41,6 +44,16 @@ h1 {
     background-color: rgb(249, 73, 73);
 }
 #blue {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    border-radius: 0px 0 350px 0;
+    top: 50%;
+    left: 50%;
+    margin: 0px 0px -350px 0px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
     background-color: blue;
     border: .5rem solid darkblue;
 }
@@ -48,6 +61,16 @@ h1 {
     background-color: rgb(53, 53, 255);
 }
 #green {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    border-radius: 0px 0px 0px 350px;
+    top: 50%;
+    left: 50%;
+    margin: 0px -350px 0px -350px;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
     background-color: green;
     border: .5rem solid darkgreen;
 }
@@ -55,45 +78,87 @@ h1 {
     background-color: rgb(25, 174, 25);
 }
 
-/* INPUT BOX */
 
 
-.input-box {
+
+#innerrim {
+    position: absolute;
     display: flex;
-    flex-direction: row;
+    flex: auto;
+    flex-direction: column;
     justify-content: center;
-    max-width: 500px;
-    margin: 40px 0px 0px 120px;
+    align-items: center;
+    border-radius: 50%;
+    height: 250px;
+    width: 250px;
+    border-style: solid;
+    border-width: 10px;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0px 0px -125px;
+    box-sizing: border-box;
+    background: black;
 }
 
-.start-dot, .reset-dot {
+h1 {
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    font-size: 2.7em;
+    align-self: center;
+    margin: 0px 0px 30px 0px;
+}
+
+#difficulty, #levels {
+    font-family: 'Dosis', sans-serif;
+    color: white;
+    font-size: .7rem;
+}
+#slider-box {
+    margin: -25px 0px 0px 0px; 
+}
+#difficulty {
+    margin: 0px 0px 5px 25px;
+}
+#slider {
+    width: 100px;
+}
+#levels span {
+    font-size: .55rem;
+    margin: 0px 15px 0px 15px;
+}
+
+
+#start-dot, #reset-dot {
     height: 25px;
     width: 25px;
-    background-color: #bbb;
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
     border-radius: 50%;
-    margin: 0px 30px 0px 30px;
+    margin-top: 20px;
 }
 
-.start-dot:hover {
-    background-color:#dddddd;
+#start-dot {
+    margin-left: 5px;
 }
 
-.timer {
+
+#start-dot:hover, #reset-dot:hover {
+    background-color: hsla(0, 0%, 50%, 0.5);
+}
+
+
+#timer, #time {
     font-family: 'Dosis', sans-serif;
-    font-size: 2.5rem;
-    margin-top: -1rem;
+    font-size: 2rem;
+    color: white;
 }
 
-.slider {
-    font-family: 'Dosis', sans-serif;
+#time {
+    position: absolute;
+    margin: 7px 0px 0px 20px;
 }
 
-.slider-labels {
-    display: flex;
-    justify-content: center;
-    margin-left: 80px;
-}
-
-.slider-labels span {
-    padding: 0px 23px 0px 23px;
+#timer {
+    position: absolute;
+    margin: -35px 0px 0px 90px;
 }
