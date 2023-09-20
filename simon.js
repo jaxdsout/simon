@@ -25,18 +25,29 @@ function setLevel () {
     level = parseInt(slider.value);
 }
 
-function resetGame(text) {
-  alert(text);
-  sequence = [];
-  userSequence = [];
-  round = 0;
-  start.disabled = false;
-  slider.disabled = false;
+function simonSays() {
+  round++;
   buttonContainer.disabled = true;
-//   resetClock();
+  console.log("wait for computer")
+
+  const progress = [...sequence];
+  progress.push(randoSequence());
+
+  nextSimon(progress);
+  sequence = [...progress];
+
+  setTimeout(() => {
+    userTurn(round);
+  }, round * 500 + 1000);
 }
 
-function startSimon(nextSequence) {
+function randoSequence() {
+  const buttons = ['red', 'green', 'blue', 'yellow'];
+  const randomize = buttons[Math.floor(Math.random() * buttons.length)];
+  return randomize;
+}
+
+function nextSimon(nextSequence) {
   nextSequence.forEach((color, index) => {
     setTimeout(() => {
       visualize(color);
@@ -45,7 +56,7 @@ function startSimon(nextSequence) {
 }
 
 function visualize(color) {
-    const button = document.querySelector(`[data-button='${color}']`); // buttons are now global
+    const button = document.querySelector(`[data-button='${color}']`);
     const sound = document.querySelector(`#sound-${color}`);
   
     button.classList.add('visualized');
@@ -54,12 +65,6 @@ function visualize(color) {
     setTimeout(() => {
       button.classList.remove('visualized');
     }, 300);
-  }
-
-function randoSequence() {
-    const buttons = ['red', 'green', 'blue', 'yellow'];
-    const randomize = buttons[Math.floor(Math.random() * buttons.length)];
-    return randomize;
 }
 
 // function countdown() {
@@ -74,22 +79,6 @@ function randoSequence() {
 //     }, 1000);
 // }
 
-function simonSays() {
-  round++;
-  buttonContainer.disabled = true;
-  console.log("wait for computer")
-
-  const progress = [...sequence];
-  progress.push(randoSequence());
-
-  startSimon(progress);
-  sequence = [...progress];
-
-  setTimeout(() => {
-    userTurn(round);
-  }, round * 500 + 1000);
-}
-
 function userTurn() {
     buttonContainer.disabled = false;
     // countdown();
@@ -98,19 +87,16 @@ function userTurn() {
 function userInput(button) {
   const index = userSequence.push(button) - 1;
   const sound = document.querySelector(`#sound-${button}`);
-    sound.play();
-
+  sound.play();
   if (userSequence[index] !== sequence[index]) {
     resetGame('YOU LOSE');
     return;
   }
-
   if (userSequence.length === sequence.length) {
     if (userSequence.length === 12) {
       resetGame(`YOU WON! THAT'S AMAZING`);
       return
     }
-
     userSequence = [];
     setTimeout(() => {
       simonSays();
@@ -130,10 +116,21 @@ buttonContainer.addEventListener('click', event => {
 //     resetGame();
 // }
 
-// function gameWin() {
-//     console.log('You win!');
-//     resetGame();
-// }
+function gameWin() {
+    console.log('You win!');
+    resetGame();
+}
+
+function resetGame(text) {
+  alert(text);
+  sequence = [];
+  userSequence = [];
+  round = 0;
+  start.disabled = false;
+  slider.disabled = false;
+  buttonContainer.disabled = true;
+//   resetClock();
+}
 
 // function resetClock() {
 //     clearInterval(timerInterval);
