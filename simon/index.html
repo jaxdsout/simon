@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css"/>
-    <script defer src="app.js"></script>
+    <script defer src="simon.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,10 +18,12 @@
 </head>
 <body>
         <div id="outerrim">
-            <div class="tile" id="yellow"></div>
-            <div class="tile" id="blue"></div>
-            <div class="tile" id="red"></div>
-            <div class="tile" id="green"></div>
+            <div class="button-container">
+                <div class="button button-yellow" data-button="yellow"></div>
+                <div class="button button-red" data-button="red"></div>
+                <div class="button button-green" data-button="green"></div>
+                <div class="button button-blue" data-button="blue"></div>
+            </div>
             <div id ="innerrim">
                 <h1>SIMON</h1>
                 <div id="controls">
@@ -33,9 +35,12 @@
                             <span>2</span>
                             <span>3</span>
                         </div>
-                    <button id="reset-dot">R</button>
-                    <button id="start-dot">S</button>
-                    <span id="time">:</span><div id="timer">0</div>
+                    </div>
+                    <div id="dots-countdown">
+                        <button id="reset-dot">R</button>
+                        <button id="start-dot">S</button>
+                        <span id="time">:</span><div id="timer">0</div>
+                    </div>
                 </div>
             </div>
         </div>
