@@ -4,16 +4,17 @@ body {
     justify-content: center;
     font-family: 'Dosis', sans-serif;
     background-color: black;
+    height: 100vh;
+    margin: 0 auto;
 }
 
 #outerrim {
     border-radius: 50%;
-    height: 600px;
-    width: 600px;
-    position: relative;
+    height: 35%;
+    width: 35%;
     border-style: solid;
     border-width: 20px;
-    margin-top: 150px;
+    margin-top: 15%;
 }
 
 /* BUTTONS */
@@ -26,12 +27,11 @@ body {
     left: 50%;
     border-style: solid;
     border-width: 5px;
-    box-sizing: border-box;
-    transition: 0.15s;
+    transition: 0.10s;
     cursor: pointer;
 }
 .button-yellow {
-    border-radius: 350px 0 0 0;
+    border-top-left-radius: 100%;
     margin: -350px 0px 0px -350px;
     background: rgb(255, 193, 37);
     border: .5rem solid goldenrod;
@@ -49,7 +49,7 @@ body {
   box-shadow: 0 0 10px 3px rgb(255, 208, 88);
 }
 .button-red {
-    border-radius: 0 350px 0 0;
+    border-top-right-radius: 100%;
     margin: -350px 0px 0px 0px;
     background-color: red;
     border: .5rem solid crimson;
@@ -67,7 +67,7 @@ body {
   box-shadow: 0 0 10px 3px rgb(249, 73, 73);
 }
 .button-blue {
-    border-radius: 0px 0 350px 0;
+    border-bottom-right-radius: 100%;
     margin: 0px 0px -350px 0px;
     background-color: blue;
     border: .5rem solid darkblue;
@@ -85,7 +85,7 @@ body {
   box-shadow: 0 0 10px 3px rgb(53, 53, 255);
 }
 .button-green {
-    border-radius: 0px 0px 0px 350px;
+    border-bottom-left-radius: 100%;
     margin: 0px -350px 0px -350px;
     background-color: green;
     border: .5rem solid darkgreen;
@@ -116,15 +116,14 @@ body {
 #innerrim {
     position: absolute;
     display: flex;
-    flex: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     height: 275px;
     width: 275px;
-    margin: 160px 0px 0px 160px;
     background: black;
+    margin: 120px 0px 0px 140px;
 }
 h1 {
     color: white;
@@ -179,7 +178,13 @@ h1 {
     pointer-events: none;
 }
 
-@media only screen 
-    and (width: 390px) 
-    and (height: 844px) 
-    and (-webkit-device-pixel-ratio: 3) { }
+@media only screen and (max-width: 390px) {
+    #outerrim {
+        height: 50%;
+        width: 50%;
+    }
+    .button {
+        height: 50%;
+        width: 50%;
+    }
+    }
