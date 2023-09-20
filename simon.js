@@ -10,13 +10,12 @@ const buttonContainer = document.querySelector('.button-container');
 const timer = document.querySelector("#timer");
 
 slider.addEventListener("input", setLevel);
-reset.addEventListener("dblclick", resetGame)
+reset.addEventListener("click", resetGame)
 start.addEventListener('click', startGame);
 
 function startGame() {
     start.disabled = true;
     slider.disabled = true;
-    console.log("commence game");
     setLevel();
     simonSays();
 }
@@ -28,17 +27,19 @@ function setLevel () {
 function simonSays() {
   round++;
   buttonContainer.disabled = true;
-  console.log("wait for computer")
 
   const progress = [...sequence];
   progress.push(randoSequence());
-
   nextSimon(progress);
   sequence = [...progress];
 
   setTimeout(() => {
     userTurn(round);
-  }, round * 500 + 1000);
+  }, round * 350 + 350);
+
+  if (resetGame) {
+    exit
+  }
 }
 
 function randoSequence() {
@@ -51,7 +52,7 @@ function nextSimon(nextSequence) {
   nextSequence.forEach((color, index) => {
     setTimeout(() => {
       visualize(color);
-    }, (index + 1) * 500);
+    }, (index + 1) * 350);
   });
 }
 
@@ -64,7 +65,7 @@ function visualize(color) {
   
     setTimeout(() => {
       button.classList.remove('visualized');
-    }, 300);
+    }, 350);
 }
 
 // function countdown() {
@@ -89,46 +90,45 @@ function userInput(button) {
   const sound = document.querySelector(`#sound-${button}`);
   sound.play();
   if (userSequence[index] !== sequence[index]) {
-    resetGame('YOU LOSE');
+    gameOver()
     return;
   }
   if (userSequence.length === sequence.length) {
-    if (userSequence.length === 12) {
-      resetGame(`YOU WON! THAT'S AMAZING`);
+    if (userSequence.length === 13) {
+      gameWin();
       return
     }
     userSequence = [];
     setTimeout(() => {
       simonSays();
-    }, 1000);
+    }, 800);
     return;
   }
 }
 
 buttonContainer.addEventListener('click', event => {
-    const { button } = event.target.dataset;
+    const {button} = event.target.dataset;
     if (button) userInput(button);
 });
 
 
-// function gameOver() {
-//     console.log('Game over!');
-//     resetGame();
-// }
-
-function gameWin() {
-    console.log('You win!');
+function gameOver() {
+    alert('YOU LOSE!');
     resetGame();
 }
 
-function resetGame(text) {
-  alert(text);
-  sequence = [];
-  userSequence = [];
-  round = 0;
+function gameWin() {
+    alert('You win!');
+    resetGame();
+}
+
+function resetGame() {
   start.disabled = false;
   slider.disabled = false;
   buttonContainer.disabled = true;
+  sequence = [];
+  userSequence = [];
+  round = 0;
 //   resetClock();
 }
 
