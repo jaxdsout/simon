@@ -1,0 +1,162 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dosis', sans-serif;
+    background-color: black;
+}
+#outerrim {
+    border-radius: 50%;
+    height: 700px;
+    width: 700px;
+    position: relative;
+    border-style: solid;
+    border-width: 20px;
+    margin: auto;
+    margin-top: 70px;
+}
+
+.button {
+    position: absolute;
+    height: 350px;
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    border-style: solid;
+    border-width: 5px;
+    box-sizing: border-box;
+    transition: 0.15s;
+    cursor: pointer;
+}
+.button-yellow {
+    border-radius: 350px 0 0 0;
+    margin: -350px 0px 0px -350px;
+    background: rgb(255, 193, 37);
+    border: .5rem solid goldenrod;
+}
+.button-yellow:hover {
+  background-color: rgb(255, 208, 88);
+}
+.button-yellow:active,
+.button-yellow.visualized {
+  background-color: rgb(255, 193, 37);
+  transform: translateY(5px);
+}
+.button-red {
+    border-radius: 0 350px 0 0;
+    margin: -350px 0px 0px 0px;
+    background-color: red;
+    border: .5rem solid crimson;
+}
+.button-red:hover {
+  background-color: rgb(249, 73, 73);
+}
+.button-red:active,
+.button-red.visualized {
+  background-color: red;
+  transform: translateY(5px);
+}
+.button-blue {
+    border-radius: 0px 0 350px 0;
+    margin: 0px 0px -350px 0px;
+    background-color: blue;
+    border: .5rem solid darkblue;
+}
+.button-blue:hover {
+  background-color: rgb(53, 53, 255);
+}
+.button-blue:active,
+.button-blue.visualized {
+  background-color: blue;
+  transform: translateY(5px);
+}
+.button-green {
+    border-radius: 0px 0px 0px 350px;
+    margin: 0px -350px 0px -350px;
+    background-color: green;
+    border: .5rem solid darkgreen;
+}
+.button-green:hover {
+  background-color: rgb(25, 174, 25);
+}
+.button-green:active,
+.button-green.visualized {
+  background-color: green;
+  transform: translateY(5px);
+}
+
+
+#innerrim {
+    position: absolute;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    margin: 200px 0px 0px 200px;
+    box-sizing: border-box;
+    background: black;
+}
+h1 {
+    color: white;
+    font-size: 2.7em;
+    align-self: center;
+    margin: 0px 0px 30px 0px;
+}
+#slider-box {
+    margin: -25px 0px 0px 0px; 
+}
+#slider {
+    width: 100px;
+    cursor: pointer;
+}
+#difficulty, #levels {
+    color: white;
+    font-size: .7rem;
+}
+#difficulty {
+    margin: 0px 0px 5px 25px;
+}
+#levels span {
+    font-size: .55rem;
+    margin: 0px 15px 0px 15px;
+}
+
+
+#dots-countdown {
+    align-items: center;
+}
+#start-dot, #reset-dot {
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border-radius: 50%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+#start-dot:hover, #reset-dot:hover {
+    background-color: black;
+    border-color: black 3px;
+}
+#start-dot {
+    margin-left: 13px;
+    margin-right: -5px;
+}
+
+#timer, #time {
+    font-size: 2rem;
+    color: white;
+}
+
+#time {
+    position: absolute;
+    margin: 7px 0px 0px 20px;
+}
+
+#timer {
+    position: absolute;
+    margin: -35px 0px 0px 95px;
+}
