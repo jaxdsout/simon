@@ -5,16 +5,18 @@ body {
     font-family: 'Dosis', sans-serif;
     background-color: black;
 }
+
 #outerrim {
     border-radius: 50%;
-    height: 700px;
-    width: 700px;
+    height: 600px;
+    width: 600px;
     position: relative;
     border-style: solid;
     border-width: 20px;
-    margin: auto;
-    margin-top: 70px;
+    margin-top: 150px;
 }
+
+/* BUTTONS */
 
 .button {
     position: absolute;
@@ -36,11 +38,15 @@ body {
 }
 .button-yellow:hover {
   background-color: rgb(255, 208, 88);
+  border: .5rem solid rgb(255, 193, 37);
+  box-shadow: 0 0 10px 3px rgb(255, 193, 37);
 }
 .button-yellow:active,
 .button-yellow.visualized {
-  background-color: rgb(255, 193, 37);
-  transform: translateY(5px);
+  background-color: rgb(255, 208, 88);
+  border-color: rgb(255, 208, 88);
+  transform: translateY(3px);
+  box-shadow: 0 0 10px 3px rgb(255, 208, 88);
 }
 .button-red {
     border-radius: 0 350px 0 0;
@@ -50,11 +56,15 @@ body {
 }
 .button-red:hover {
   background-color: rgb(249, 73, 73);
+  border: .5rem solid red;
+  box-shadow: 0 0 10px 3px red;
 }
 .button-red:active,
 .button-red.visualized {
-  background-color: red;
-  transform: translateY(5px);
+  background-color: rgb(249, 73, 73);
+  border-color: rgb(249, 73, 73);
+  transform: translateY(3px);
+  box-shadow: 0 0 10px 3px rgb(249, 73, 73);
 }
 .button-blue {
     border-radius: 0px 0 350px 0;
@@ -64,11 +74,15 @@ body {
 }
 .button-blue:hover {
   background-color: rgb(53, 53, 255);
+  border: .5rem solid blue;
+  box-shadow: 0 0 10px 3px blue;
 }
 .button-blue:active,
 .button-blue.visualized {
-  background-color: blue;
-  transform: translateY(5px);
+  background-color: rgb(53, 53, 255);
+  border-color: rgb(53, 53, 255);
+  transform: translateY(3px);
+  box-shadow: 0 0 10px 3px rgb(53, 53, 255);
 }
 .button-green {
     border-radius: 0px 0px 0px 350px;
@@ -78,13 +92,19 @@ body {
 }
 .button-green:hover {
   background-color: rgb(25, 174, 25);
+  border: .5rem solid green;
+  box-shadow: 0 0 10px 3px green;
 }
 .button-green:active,
 .button-green.visualized {
-  background-color: green;
-  transform: translateY(5px);
+  background-color: rgb(25, 174, 25);
+  border-color: rgb(25, 174, 25);
+  transform: translateY(3px);
+  box-shadow: 0 0 10px 3px rgb(25, 174, 25);
 }
 
+
+/* INNER RIM (logo, difficulty scale, start/reset. timer) */
 
 #innerrim {
     position: absolute;
@@ -94,10 +114,9 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    height: 300px;
-    width: 300px;
-    margin: 200px 0px 0px 200px;
-    box-sizing: border-box;
+    height: 275px;
+    width: 275px;
+    margin: 160px 0px 0px 160px;
     background: black;
 }
 h1 {
@@ -160,3 +179,11 @@ h1 {
     position: absolute;
     margin: -35px 0px 0px 95px;
 }
+
+
+/* MEDIA INQUIRIES */
+
+@media only screen 
+    and (width: 390px) 
+    and (height: 844px) 
+    and (-webkit-device-pixel-ratio: 3) { }
