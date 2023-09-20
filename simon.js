@@ -38,11 +38,11 @@ async function simonSays() {
   progress.push(randoSequence());
   await nextSimon(progress);
   sequence = [...progress];
-  const userDelay = 450;
+  const simonDelay = 400;
   setLevel()
   setTimeout(() => {
     userTurn(round);
-  }, userDelay);
+  }, simonDelay);
 }
 
 function randoSequence() {
@@ -72,13 +72,14 @@ function visualize(color) {
   return new Promise((resolve) => {
     const button = document.querySelector(`[data-button='${color}']`);
     const sound = document.querySelector(`#sound-${color}`);
+    const visuDelay = 375;
     if (level === 1 || 2) {
       button.classList.add('visualized');
       sound.play();
       setTimeout(() => {
         button.classList.remove('visualized');
         resolve();
-      }, 450);
+      }, visuDelay);
     }
     if (level === 3) {
       button.classList.add('blacklist');
@@ -86,7 +87,7 @@ function visualize(color) {
       setTimeout(() => {
         button.classList.remove('blacklist');
         resolve();
-      }, 450);
+      }, visuDelay);
     }
     }
   )}
@@ -112,7 +113,7 @@ function userInput(button) {
     userSequence = [];
     setTimeout(() => {
       simonSays();
-    }, 450);
+    }, 250);
     return;
   }
 }

@@ -5,10 +5,12 @@ body {
     font-family: 'Dosis', sans-serif;
     background-color: black;
     height: 100vh;
+    width: 100vw;
     margin: 0 auto;
 }
 
 #outerrim {
+    border: 10px solid black;
     border-radius: 50%;
     height: 35%;
     width: 35%;
@@ -29,6 +31,7 @@ body {
     border-width: 5px;
     transition: 0.10s;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .button-yellow {
     border-top-left-radius: 100%;
@@ -39,14 +42,14 @@ body {
 .button-yellow:hover {
   background-color: rgb(255, 208, 88);
   border: .5rem solid rgb(255, 193, 37);
-  box-shadow: 0 0 10px 3px rgb(255, 193, 37);
+  box-shadow: 0 0 10px 1px rgb(255, 193, 37);
 }
 .button-yellow:active,
 .button-yellow.visualized {
   background-color: rgb(255, 208, 88);
   border-color: rgb(255, 208, 88);
   transform: translateY(3px);
-  box-shadow: 0 0 10px 3px rgb(255, 208, 88);
+  box-shadow: 0 0 10px 2px rgb(255, 208, 88);
 }
 .button-red {
     border-top-right-radius: 100%;
@@ -57,14 +60,14 @@ body {
 .button-red:hover {
   background-color: rgb(249, 73, 73);
   border: .5rem solid red;
-  box-shadow: 0 0 10px 3px red;
+  box-shadow: 0 0 10px 1px red;
 }
 .button-red:active,
 .button-red.visualized {
   background-color: rgb(249, 73, 73);
   border-color: rgb(249, 73, 73);
   transform: translateY(3px);
-  box-shadow: 0 0 10px 3px rgb(249, 73, 73);
+  box-shadow: 0 0 10px 2px rgb(249, 73, 73);
 }
 .button-blue {
     border-bottom-right-radius: 100%;
@@ -75,14 +78,14 @@ body {
 .button-blue:hover {
   background-color: rgb(53, 53, 255);
   border: .5rem solid blue;
-  box-shadow: 0 0 10px 3px blue;
+  box-shadow: 0 0 10px 1px blue;
 }
 .button-blue:active,
 .button-blue.visualized {
   background-color: rgb(53, 53, 255);
   border-color: rgb(53, 53, 255);
   transform: translateY(3px);
-  box-shadow: 0 0 10px 3px rgb(53, 53, 255);
+  box-shadow: 0 0 10px 2px rgb(53, 53, 255);
 }
 .button-green {
     border-bottom-left-radius: 100%;
@@ -93,37 +96,38 @@ body {
 .button-green:hover {
   background-color: rgb(25, 174, 25);
   border: .5rem solid green;
-  box-shadow: 0 0 10px 3px green;
+  box-shadow: 0 0 10px 1px green;
 }
 .button-green:active,
 .button-green.visualized {
   background-color: rgb(25, 174, 25);
   border-color: rgb(25, 174, 25);
   transform: translateY(3px);
-  box-shadow: 0 0 10px 3px rgb(25, 174, 25);
+  box-shadow: 0 0 10px 2px rgb(25, 174, 25);
 }
 
 .button-yellow.blacklist, .button-red.blacklist, .button-green.blacklist, .button-blue.blacklist {
     background-color: black;
     border-color: black;
     transform: translateY(13px);
-    box-shadow: 0 0 10px 3px black;
+    box-shadow: 0 0 10px 2px black;
 }
 
 
 /* INNER RIM (logo, difficulty scale, start/reset. timer) */
 
 #innerrim {
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
+    margin-top: 100px;
     border-radius: 50%;
     height: 275px;
     width: 275px;
     background: black;
-    margin: 120px 0px 0px 140px;
 }
 h1 {
     color: white;
@@ -150,7 +154,6 @@ h1 {
     margin: 0px 15px 0px 15px;
 }
 
-
 #dots {
     align-items: center;
 }
@@ -158,13 +161,20 @@ h1 {
     height: 25px;
     width: 25px;
     background-color: white;
+    font-weight: 700;
     border-radius: 50%;
     margin-top: 20px;
     cursor: pointer;
 }
-#start-dot:hover, #reset-dot:hover {
-    background-color: black;
-    border-color: black 3px;
+#start-dot:hover {
+    color: limegreen;
+    background: none;
+    border: 1px solid limegreen;
+}
+#reset-dot:hover {
+    color: lightcoral;
+    background: none;
+    border: 1px solid lightcoral;
 }
 #start-dot {
     margin-left: 15px;
@@ -178,13 +188,10 @@ h1 {
     pointer-events: none;
 }
 
-@media only screen and (max-width: 390px) {
-    #outerrim {
-        height: 50%;
-        width: 50%;
+/* @media only screen and (max-width: 390px) {
+    body {
+        height: 1vh;
+        width: 1vw;
     }
-    .button {
-        height: 50%;
-        width: 50%;
-    }
-    }
+
+} */
