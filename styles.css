@@ -103,6 +103,13 @@ body {
   box-shadow: 0 0 10px 3px rgb(25, 174, 25);
 }
 
+.button-yellow.blacklist, .button-red.blacklist, .button-green.blacklist, .button-blue.blacklist {
+    background-color: black;
+    border-color: black;
+    transform: translateY(13px);
+    box-shadow: 0 0 10px 3px black;
+}
+
 
 /* INNER RIM (logo, difficulty scale, start/reset. timer) */
 
@@ -145,7 +152,7 @@ h1 {
 }
 
 
-#dots-countdown {
+#dots {
     align-items: center;
 }
 #start-dot, #reset-dot {
@@ -161,27 +168,16 @@ h1 {
     border-color: black 3px;
 }
 #start-dot {
-    margin-left: 13px;
-    margin-right: -5px;
-}
-
-#timer, #time {
-    font-size: 2rem;
-    color: white;
-}
-
-#time {
-    position: absolute;
-    margin: 7px 0px 0px 20px;
-}
-
-#timer {
-    position: absolute;
-    margin: -35px 0px 0px 95px;
+    margin-left: 15px;
+    margin-right: 20px;
 }
 
 
-/* MEDIA INQUIRIES */
+/* MEDIA INQUIRIES & DISABLE */
+
+.disabled {
+    pointer-events: none;
+}
 
 @media only screen 
     and (width: 390px) 
