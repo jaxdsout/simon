@@ -1,28 +1,33 @@
 
 body {
-    display: flex;
-    justify-content: center;
     font-family: 'Dosis', sans-serif;
     background-color: black;
-    height: 100vh;
-    width: 100vw;
-    margin: 0 auto;
+    min-width: 70vw;
 }
 
-#outerrim {
-    border: 10px solid black;
-    border-radius: 50%;
-    height: 35%;
-    width: 35%;
-    border-style: solid;
-    border-width: 20px;
-    margin-top: 15%;
-}
 
 /* BUTTONS */
 
+.simon {
+    display: flex;
+    position: relative;
+    max-width: 60%;
+    align-content: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    max-width: 40%;
+    position: relative;
+    z-index: 1;
+}
+
 .button {
-    position: absolute;
+    position: relative;
     height: 350px;
     width: 350px;
     top: 50%;
@@ -35,7 +40,6 @@ body {
 }
 .button-yellow {
     border-top-left-radius: 100%;
-    margin: -350px 0px 0px -350px;
     background: rgb(255, 193, 37);
     border: .5rem solid goldenrod;
 }
@@ -53,7 +57,6 @@ body {
 }
 .button-red {
     border-top-right-radius: 100%;
-    margin: -350px 0px 0px 0px;
     background-color: red;
     border: .5rem solid crimson;
 }
@@ -71,7 +74,6 @@ body {
 }
 .button-blue {
     border-bottom-right-radius: 100%;
-    margin: 0px 0px -350px 0px;
     background-color: blue;
     border: .5rem solid darkblue;
 }
@@ -89,7 +91,6 @@ body {
 }
 .button-green {
     border-bottom-left-radius: 100%;
-    margin: 0px -350px 0px -350px;
     background-color: green;
     border: .5rem solid darkgreen;
 }
@@ -106,39 +107,44 @@ body {
   box-shadow: 0 0 10px 2px rgb(25, 174, 25);
 }
 
-.button-yellow.blacklist, .button-red.blacklist, .button-green.blacklist, .button-blue.blacklist {
+.blacklist {
     background-color: black;
-    border-color: black;
+    border-color: rgb(18, 18, 18);
     transform: translateY(13px);
-    box-shadow: 0 0 10px 2px black;
+    box-shadow: 0 0 10px 2px rgb( 18, 18, 18);
 }
 
 
 /* INNER RIM (logo, difficulty scale, start/reset. timer) */
 
-#innerrim {
-    position: relative;
+
+.innerCircle {
+    position: absolute;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    align-content: center;
+    justify-content: center;
+    margin-top: 20%;
     border-radius: 50%;
-    height: 275px;
-    width: 275px;
-    background: black;
+    height: 280px;
+    width: 280px;
+    background: rgb(40, 40, 40);
+    z-index: 2;
 }
+
 h1 {
     color: white;
     font-size: 2.7em;
-    align-self: center;
-    margin: 0px 0px 30px 0px;
+    margin-top: -10px;
 }
 #slider-box {
-    margin: -25px 0px 0px 0px; 
+    margin-top: -30px;
 }
 #slider {
     width: 100px;
+    margin-left: 16px;
     cursor: pointer;
 }
 #difficulty, #levels {
@@ -146,24 +152,33 @@ h1 {
     font-size: .7rem;
 }
 #difficulty {
-    margin: 0px 0px 5px 25px;
+    margin-left: 40px;
+    margin-bottom: 5px;
 }
 #levels span {
-    font-size: .55rem;
-    margin: 0px 15px 0px 15px;
+    font-size: .7rem;
+    margin: 0px 17px 0px 20px;
 }
 
 #dots {
     align-items: center;
 }
-#start-dot, #reset-dot {
+#start-dot, #reset-dot, #how-to-play {
+    font-family: 'Dosis', sans-serif;
     height: 25px;
     width: 25px;
     background-color: white;
+    border: none;
     font-weight: 700;
     border-radius: 50%;
-    margin-top: 20px;
     cursor: pointer;
+    margin-top: 17px;
+}
+#start-dot, #reset-dot {
+    margin-right: 15px;
+}
+#start-dot {
+    margin-left: 12px;
 }
 #start-dot:hover {
     color: limegreen;
@@ -175,22 +190,62 @@ h1 {
     background: none;
     border: 1px solid lightcoral;
 }
-#start-dot {
-    margin-left: 15px;
-    margin-right: 20px;
+#how-to-play:hover {
+    color: white;
+    background: none;
+    border: 1px solid white;
+}
+.exit:hover {
+    color: rgb(0, 0, 0);
+    background: none;
+    border: 1px solid black;
 }
 
+
+/* */
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 450px;
+    padding: 1.3rem;
+    min-height: 250px;
+    position: absolute;
+    z-index: 4;
+    top: 20%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 3;
+}
+  
 
 /* MEDIA INQUIRIES & DISABLE */
 
 .disabled {
     pointer-events: none;
 }
+.hidden {
+    display: none;
+}
 
-/* @media only screen and (max-width: 390px) {
-    body {
-        height: 1vh;
-        width: 1vw;
+@media screen and (max-width: 300px) {
+    .simon {
+    width: 100%;
     }
+}
 
-} */
