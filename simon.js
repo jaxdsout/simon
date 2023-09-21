@@ -106,7 +106,11 @@ function userInput(button) {
     return;
   }
   if (userSequence.length === sequence.length) {
-    if (userSequence.length === 13) {
+    if (userSequence.length === 2 && level === 3) {
+      ultimateWin();
+      return
+    }
+    if (userSequence.length === 2) {
       gameWin();
       return
     }
@@ -117,22 +121,27 @@ function userInput(button) {
     return;
   }
 }
-
 buttonContainer.addEventListener('click', event => {
-    const {button} = event.target.dataset;
-    if (button) userInput(button);
+  const {button} = event.target.dataset;
+  if (button) userInput(button);
 });
 
 function gameOver() {
-    alert('YOU LOSE!');
-    resetGame();
-    console.log('the game was reset')
+  loser.classList.remove("hidden");
+  overlay.classList.remove("hidden")
+  resetGame();
 }
 
 function gameWin() {
-    alert('You win!');
-    resetGame();
-    console.log('the game was reset')
+  winner.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  resetGame();
+}
+
+function ultimateWin() {
+  bigWinner.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  resetGame();
 }
 
 function resetGame() {
@@ -143,4 +152,35 @@ function resetGame() {
   userSequence = [];
   round = 0;
 }
+
+
+// MODALS //
+const overlay = document.querySelector(".overlay");
+const instructions = document.querySelector("#instructions");
+const howToPlay = document.querySelector("#how-to-play");
+const loser = document.querySelector("#you-lose");
+const winner = document.querySelector('#you-win');
+const bigWinner = document.querySelector("#big-win")
+
+const closeModal = function () {
+  instructions.classList.add("hidden");
+  overlay.classList.add("hidden");
+  loser.classList.add("hidden");
+  winner.classList.add("hidden");
+  bigWinner.classList.add("hidden");
+};
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && 
+  (!instructions.classList.contains("hidden") || loser.classList.contains("hidden") || winner.classList.contains("hidden") || bigWinner.classList.contains("hidden")) ) {
+    closeModal();
+  }
+});
+
+const openInstructions = function () {
+  instructions.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+howToPlay.addEventListener("click", openInstructions);
+
 
