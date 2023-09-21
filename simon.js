@@ -5,52 +5,70 @@ let level;
 
 const start = document.querySelector('#start-dot');
 const reset = document.querySelector("#reset-dot");
+const howToPlay = document.querySelector("#how-to-play");
 const slider = document.querySelector("#slider");
 const buttonContainer = document.querySelector('.button-container');
+const overlay = document.querySelector(".overlay");
+const instructions = document.querySelector("#instructions");
+const loser = document.querySelector("#you-lose");
+const winner = document.querySelector('#you-win');
+const bigWinner = document.querySelector("#big-win");
 
 slider.addEventListener("input", setLevel);
 reset.addEventListener("click", resetGame)
 start.addEventListener('click', startGame);
+howToPlay.addEventListener("click", openInstructions);
 
-function disable () {
+function disableUser () {
   buttonContainer.classList.add("disabled");
 }
-function enable () {
+function enableUser () {
   buttonContainer.classList.remove("disabled")
 }
-disable();
+disableUser(); // TO PREVENT USER FROM MISFIRING A GAME OVER
+
+// CONTROLS
 
 function setLevel () {
   level = parseInt(slider.value);
-  console.log(level)
+}
+
+function resetGame() {
+  start.disabled = false;
+  slider.disabled = false;
+  disableUser();
+  sequence = [];
+  userSequence = [];
+  round = 0;
 }
 
 function startGame() {
-    start.disabled = true;
-    slider.disabled = true;
-    simonSays();
+  start.disabled = true;
+  slider.disabled = true;
+  simonSays();
 }
+
+// GAMEFLOW
 
 async function simonSays() {
-  disable();
+  disableUser();
   round++;
-  const progress = [...sequence];
-  progress.push(randoSequence());
-  await nextSimon(progress);
-  sequence = [...progress];
-  const simonDelay = 400;
-  setLevel()
+  sequence.push(randomizer());
+  await nextSimon(sequence);
   setTimeout(() => {
-    userTurn(round);
-  }, simonDelay);
+    enableUser()}, 600);
 }
 
-function randoSequence() {
-  const buttons = ['red', 'green', 'blue', 'yellow'];
+async function nextSimon(continuation) {
+  for (const color of continuation) {
+    await visualize(color);
+  }
+}
+
+function randomizer() {
+  const buttons = ['yellow', 'red', 'green', 'blue'];
   const rando = buttons[Math.floor(Math.random() * buttons.length)];
-  if (level === 1) {
-    return rando;
-  } 
+  if (level === 1) return rando;
   if (level === 2 || 3) {
     console.log('level 2 sequence')
     for (let i = rando.length - 1; i > 0; i--) {
@@ -61,70 +79,56 @@ function randoSequence() {
   }
 }
 
-async function nextSimon(nextSequence) {
-  for (const color of nextSequence) {
-    console.log('visualizing color:', color)
-    await visualize(color);
-  }
-}
-
 function visualize(color) {
   return new Promise((resolve) => {
-    const button = document.querySelector(`[data-button='${color}']`);
+    const button = document.querySelector(`.${color}`);
     const sound = document.querySelector(`#sound-${color}`);
-    const visuDelay = 375;
     if (level === 1 || 2) {
       button.classList.add('visualized');
       sound.play();
       setTimeout(() => {
         button.classList.remove('visualized');
-        resolve();
-      }, visuDelay);
+        resolve()}, 300);
     }
     if (level === 3) {
       button.classList.add('blacklist');
       sound.play();
       setTimeout(() => {
         button.classList.remove('blacklist');
-        resolve();
-      }, visuDelay);
+        resolve()}, 300);
     }
     }
-  )}
+)}
 
-function userTurn() {
-    enable();
-}
-
-function userInput(button) {
-  console.log('userInput called with button:', button);
-  const index = userSequence.push(button) - 1;
-  const sound = document.querySelector(`#sound-${button}`);
+function verify(choice) {
+  const index = userSequence.push(choice) - 1;
+  const sound = document.querySelector(`#sound-${choice}`);
   sound.play();
   if (userSequence[index] !== sequence[index]) {
-    gameOver()
-    return;
+    return gameOver()
   }
   if (userSequence.length === sequence.length) {
-    if (userSequence.length === 2 && level === 3) {
-      ultimateWin();
-      return
+    if (userSequence.length === 6 && level === 3) {
+      return ultimateWin();
     }
-    if (userSequence.length === 2) {
-      gameWin();
-      return
+    if (userSequence.length === 6) {
+      return gameWin();
     }
     userSequence = [];
     setTimeout(() => {
       simonSays();
-    }, 250);
+    }, 200);
     return;
   }
 }
+
 buttonContainer.addEventListener('click', event => {
   const {button} = event.target.dataset;
-  if (button) userInput(button);
+  if (button) verify(button);
 });
+
+
+// END OF GAME HANDLERS 
 
 function gameOver() {
   loser.classList.remove("hidden");
@@ -144,25 +148,9 @@ function ultimateWin() {
   resetGame();
 }
 
-function resetGame() {
-  start.disabled = false;
-  slider.disabled = false;
-  disable();
-  sequence = [];
-  userSequence = [];
-  round = 0;
-}
-
-
 // MODALS //
-const overlay = document.querySelector(".overlay");
-const instructions = document.querySelector("#instructions");
-const howToPlay = document.querySelector("#how-to-play");
-const loser = document.querySelector("#you-lose");
-const winner = document.querySelector('#you-win');
-const bigWinner = document.querySelector("#big-win")
 
-const closeModal = function () {
+function closeModal () {
   instructions.classList.add("hidden");
   overlay.classList.add("hidden");
   loser.classList.add("hidden");
@@ -177,10 +165,8 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-const openInstructions = function () {
+function openInstructions () {
   instructions.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
-howToPlay.addEventListener("click", openInstructions);
-
 

@@ -11,7 +11,7 @@ body {
 .simon {
     display: flex;
     position: relative;
-    max-width: 60%;
+    max-width: 50%;
     align-content: center;
     justify-content: center;
     z-index: 1;
@@ -30,8 +30,6 @@ body {
     position: relative;
     height: 350px;
     width: 350px;
-    top: 50%;
-    left: 50%;
     border-style: solid;
     border-width: 5px;
     transition: 0.10s;
@@ -44,16 +42,16 @@ body {
     border: .5rem solid goldenrod;
 }
 .button-yellow:hover {
-  background-color: rgb(255, 208, 88);
-  border: .5rem solid rgb(255, 193, 37);
-  box-shadow: 0 0 10px 1px rgb(255, 193, 37);
+    background-color: rgb(255, 208, 88);
+    border: .5rem solid rgb(255, 193, 37);
+    box-shadow: 0 0 10px 1px rgb(255, 193, 37);
 }
 .button-yellow:active,
 .button-yellow.visualized {
-  background-color: rgb(255, 208, 88);
-  border-color: rgb(255, 208, 88);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(255, 208, 88);
+    background-color: rgb(255, 208, 88);
+    border-color: rgb(255, 208, 88);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(255, 208, 88);
 }
 .button-red {
     border-top-right-radius: 100%;
@@ -61,16 +59,16 @@ body {
     border: .5rem solid crimson;
 }
 .button-red:hover {
-  background-color: rgb(249, 73, 73);
-  border: .5rem solid red;
-  box-shadow: 0 0 10px 1px red;
+    background-color: rgb(249, 73, 73);
+    border: .5rem solid red;
+    box-shadow: 0 0 10px 1px red;
 }
 .button-red:active,
 .button-red.visualized {
-  background-color: rgb(249, 73, 73);
-  border-color: rgb(249, 73, 73);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(249, 73, 73);
+    background-color: rgb(249, 73, 73);
+    border-color: rgb(249, 73, 73);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(249, 73, 73);
 }
 .button-blue {
     border-bottom-right-radius: 100%;
@@ -78,16 +76,16 @@ body {
     border: .5rem solid darkblue;
 }
 .button-blue:hover {
-  background-color: rgb(53, 53, 255);
-  border: .5rem solid blue;
-  box-shadow: 0 0 10px 1px blue;
+    background-color: rgb(53, 53, 255);
+    border: .5rem solid blue;
+    box-shadow: 0 0 10px 1px blue;
 }
 .button-blue:active,
 .button-blue.visualized {
-  background-color: rgb(53, 53, 255);
-  border-color: rgb(53, 53, 255);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(53, 53, 255);
+    background-color: rgb(53, 53, 255);
+    border-color: rgb(53, 53, 255);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(53, 53, 255);
 }
 .button-green {
     border-bottom-left-radius: 100%;
@@ -95,23 +93,41 @@ body {
     border: .5rem solid darkgreen;
 }
 .button-green:hover {
-  background-color: rgb(25, 174, 25);
-  border: .5rem solid green;
-  box-shadow: 0 0 10px 1px green;
+    background-color: rgb(25, 174, 25);
+    border: .5rem solid green;
+    box-shadow: 0 0 10px 1px green;
 }
 .button-green:active,
 .button-green.visualized {
-  background-color: rgb(25, 174, 25);
-  border-color: rgb(25, 174, 25);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(25, 174, 25);
+    background-color: rgb(25, 174, 25);
+    border-color: rgb(25, 174, 25);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(25, 174, 25);
 }
 
-.blacklist {
-    background-color: black;
-    border-color: rgb(18, 18, 18);
-    transform: translateY(13px);
-    box-shadow: 0 0 10px 2px rgb( 18, 18, 18);
+.button-green.blacklist {
+    background-color: rgb(149, 149, 149);
+    border-color: rgb(134, 134, 134);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(134, 134, 134);
+}
+.button-blue.blacklist {
+    background-color: rgb(111, 111, 111);
+    border-color: rgb(98, 98, 98);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(98, 98, 98);
+}
+.button-yellow.blacklist {
+    background-color: rgb(183, 183, 183);
+    border-color: rgb(200, 200, 200);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(200, 200, 200);
+} 
+.button-red.blacklist {
+    background-color: rgb(129, 129, 129);
+    border-color: rgb(104, 104, 104);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(200, 200, 200);
 }
 
 
@@ -137,14 +153,12 @@ body {
 h1 {
     color: white;
     font-size: 2.7em;
-    margin-top: -10px;
 }
 #slider-box {
-    margin-top: -30px;
+    margin-top: 0px;
 }
 #slider {
     width: 100px;
-    margin-left: 16px;
     cursor: pointer;
 }
 #difficulty, #levels {
@@ -152,12 +166,10 @@ h1 {
     font-size: .7rem;
 }
 #difficulty {
-    margin-left: 40px;
-    margin-bottom: 5px;
+    margin-left: 0px;
 }
 #levels span {
     font-size: .7rem;
-    margin: 0px 17px 0px 20px;
 }
 
 #dots {
@@ -169,17 +181,11 @@ h1 {
     width: 25px;
     background-color: white;
     border: none;
-    font-weight: 700;
+    font-weight: 900;
     border-radius: 50%;
     cursor: pointer;
-    margin-top: 17px;
 }
-#start-dot, #reset-dot {
-    margin-right: 15px;
-}
-#start-dot {
-    margin-left: 12px;
-}
+
 #start-dot:hover {
     color: limegreen;
     background: none;
@@ -241,11 +247,5 @@ h1 {
 }
 .hidden {
     display: none;
-}
-
-@media screen and (max-width: 300px) {
-    .simon {
-    width: 100%;
-    }
 }
 
