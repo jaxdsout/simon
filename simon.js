@@ -88,7 +88,7 @@ function visualize(color) {
   }
 }
 
-// HANDLES BUTTON CLICKS BY TARGETING ID OF EVENT, PUSHES CHOICE TO USER SEQUENCE, THEN SENDS TO VERIFY
+// HANDLES BUTTON CLICKS BY TARGETING ID OF EVENT THEN SENDS TO VERIFY
 buttonContainer.addEventListener('click', event => {
   const choice = event.target.id;
   const sound = document.querySelector(`#sound-${choice}`);
@@ -96,7 +96,7 @@ buttonContainer.addEventListener('click', event => {
   verify(choice);
 });
 
-// GRABS THE LAST CHOICE AND RUNS THROUGH VERIFY PROTOCOL; IF CORRECT & NO WIN, MORE SIMONSAYS
+// PUSHES CHOICE TO USER SEQUENCE AND RUNS THROUGH VERIFY PROTOCOL; IF CORRECT & NO WIN, MORE SIMONSAYS
 function verify(choice) { 
   const answer = userSequence.push(choice) - 1; // SUBTRACTING BY 1 TO TARGET THE LAST BUTTON 
   if (userSequence[answer] !== sequence[answer]) {
