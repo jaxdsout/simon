@@ -4,10 +4,10 @@ let buttons = ['yellow', 'red', 'green', 'blue'];
 let round = 0;
 let level;
 
-const start = document.querySelector('#start-dot');
-const reset = document.querySelector("#reset-dot");
-const howToPlay = document.querySelector("#how-to-play");
-const slider = document.querySelector("#slider");
+const start = document.querySelector('.start-dot');
+const reset = document.querySelector(".reset-dot");
+const howToPlay = document.querySelector(".how-to-play");
+const slider = document.querySelector(".slider");
 const buttonContainer = document.querySelector('.button-container');
 const overlay = document.querySelector(".overlay");
 const instructions = document.querySelector("#instructions");
@@ -26,10 +26,9 @@ function disableUser () {
 function enableUser () {
   buttonContainer.classList.remove("disabled")
 }
-disableUser(); // TO PREVENT USER FROM MISFIRING A GAME OVER
+disableUser(); // PREVENTS USER FROM MISFIRING A GAME OVER
 
 // CONTROLS
-
 function setLevel () {
   level = parseInt(slider.value);
 }
@@ -50,88 +49,80 @@ function startGame() {
 }
 
 // GAMEFLOW
-
 function randomizer() {
-  const rando = buttons[Math.floor(Math.random() * buttons.length)];
-  if (level === 1) {
+  let rando = buttons[Math.floor(Math.random() * buttons.length)];
+  let lastColor;
+  if (rando === lastColor && (level === 2 || level === 3)) {
     return rando;
   } else {
-    for (let i = rando.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [rando[i], rando[j]] = [rando[j], rando[i]];
-    }
+    lastColor = rando;
     return rando;
   }
 }
 
-function simonSays() {
+function simonSays() { 
   disableUser();
   round++;
   sequence.push(randomizer());
-  simonDoes(sequence);
+  sequence.forEach((color, index) => {
+      setTimeout(() => {
+        visualize(color);
+      }, (index + 1) * 300)
+    });
   enableUser();
 }
 
-function simonDoes(simonSequence) {
-  simonSequence.forEach((color, index) => {
-    setTimeout(() => {
-      visualize(color);
-    }, (index + 1) * 500)
-  });
-}
-
 function visualize(color) {
-  const button = document.querySelector(`.${color}`);
+  const button = document.querySelector(`.${color}`); 
   const sound = document.querySelector(`#sound-${color}`);
   if (level === 3) {
-    button.classList.add('blacklist');
+    button.classList.add('slight'); 
     sound.play();
     setTimeout(() => {
-      button.classList.remove('blacklist');
-    }, 300);
+      button.classList.remove('slight');
+    }, 180);
   } else {
     button.classList.add('visualized');
     sound.play();
     setTimeout(() => {
       button.classList.remove('visualized')
-    }, 300);
+    }, 180);
   }
 }
+// USES COLOR ARGUMENT TO AVOID MULTIPLE QUERY CALLS; THEN ADDS CERTAIN CSS STYLES, PLAYS THE SOUND, AND REMOVES CSS STYLE
 
-function verify(button) {
-  const index = userSequence.push(button) - 1;
-  if (userSequence[index] !== sequence[index]) {
-    gameOver();
-    return
+buttonContainer.addEventListener('click', event => {
+  const choice = event.target.id;
+  const sound = document.querySelector(`#sound-${choice}`);
+  sound.play();
+  verify(choice);
+});
+
+function verify(choice) { 
+  const answer = userSequence.push(choice) - 1; // SUBTRACTING BY 1 TO TARGET THE LAST BUTTON 
+  if (userSequence[answer] !== sequence[answer]) {
+    return gameOver();
   }
   if (userSequence.length === sequence.length) {
-    if (userSequence.length === 6 && level === 3) {
-      ultimateWin();
-      return
+    if (userSequence.length === 20 && level === 3) {
+      return ultimateWin();
     }
-    if (userSequence.length === 6) {
-      gameWin();
-      return
+    if (userSequence.length === 13) {
+      return gameWin();
     }
     userSequence = [];
     setTimeout(() => {
       simonSays();
-    }, 800);
-    return
+    }, 600);
+    return;
   }
 }
 
-buttonContainer.addEventListener('click', event => {
-  const { button } = event.target.dataset;
-  const sound = document.querySelector(`#sound-${button}`);
-  sound.play()
-  if (button) verify(button);
-});
-
 // END OF GAME HANDLERS 
-
 function gameOver() {
   loser.classList.remove("hidden");
+  const error = document.querySelector("#sound-error");
+  error.play();
   overlay.classList.remove("hidden")
   resetGame();
 }
