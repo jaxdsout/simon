@@ -1,196 +1,280 @@
 
 body {
-    display: flex;
-    justify-content: center;
+    background-color: black;
     font-family: 'Dosis', sans-serif;
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    margin: 0 auto;
 }
-
-#outerrim {
-    border: 10px solid black;
-    border-radius: 50%;
-    height: 35%;
-    width: 35%;
-    border-style: solid;
-    border-width: 20px;
-    margin-top: 15%;
-}
-
-/* BUTTONS */
-
-.button {
-    position: absolute;
-    height: 350px;
-    width: 350px;
-    top: 50%;
-    left: 50%;
-    border-style: solid;
-    border-width: 5px;
-    transition: 0.10s;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-.button-yellow {
-    border-top-left-radius: 100%;
-    margin: -350px 0px 0px -350px;
-    background: rgb(255, 193, 37);
-    border: .5rem solid goldenrod;
-}
-.button-yellow:hover {
-  background-color: rgb(255, 208, 88);
-  border: .5rem solid rgb(255, 193, 37);
-  box-shadow: 0 0 10px 1px rgb(255, 193, 37);
-}
-.button-yellow:active,
-.button-yellow.visualized {
-  background-color: rgb(255, 208, 88);
-  border-color: rgb(255, 208, 88);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(255, 208, 88);
-}
-.button-red {
-    border-top-right-radius: 100%;
-    margin: -350px 0px 0px 0px;
-    background-color: red;
-    border: .5rem solid crimson;
-}
-.button-red:hover {
-  background-color: rgb(249, 73, 73);
-  border: .5rem solid red;
-  box-shadow: 0 0 10px 1px red;
-}
-.button-red:active,
-.button-red.visualized {
-  background-color: rgb(249, 73, 73);
-  border-color: rgb(249, 73, 73);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(249, 73, 73);
-}
-.button-blue {
-    border-bottom-right-radius: 100%;
-    margin: 0px 0px -350px 0px;
-    background-color: blue;
-    border: .5rem solid darkblue;
-}
-.button-blue:hover {
-  background-color: rgb(53, 53, 255);
-  border: .5rem solid blue;
-  box-shadow: 0 0 10px 1px blue;
-}
-.button-blue:active,
-.button-blue.visualized {
-  background-color: rgb(53, 53, 255);
-  border-color: rgb(53, 53, 255);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(53, 53, 255);
-}
-.button-green {
-    border-bottom-left-radius: 100%;
-    margin: 0px -350px 0px -350px;
-    background-color: green;
-    border: .5rem solid darkgreen;
-}
-.button-green:hover {
-  background-color: rgb(25, 174, 25);
-  border: .5rem solid green;
-  box-shadow: 0 0 10px 1px green;
-}
-.button-green:active,
-.button-green.visualized {
-  background-color: rgb(25, 174, 25);
-  border-color: rgb(25, 174, 25);
-  transform: translateY(3px);
-  box-shadow: 0 0 10px 2px rgb(25, 174, 25);
-}
-
-.button-yellow.blacklist, .button-red.blacklist, .button-green.blacklist, .button-blue.blacklist {
-    background-color: black;
-    border-color: black;
-    transform: translateY(13px);
-    box-shadow: 0 0 10px 2px black;
-}
-
-
-/* INNER RIM (logo, difficulty scale, start/reset. timer) */
-
-#innerrim {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    border-radius: 50%;
-    height: 275px;
-    width: 275px;
-    background: black;
-}
-h1 {
-    color: white;
-    font-size: 2.7em;
-    align-self: center;
-    margin: 0px 0px 30px 0px;
-}
-#slider-box {
-    margin: -25px 0px 0px 0px; 
-}
-#slider {
-    width: 100px;
-    cursor: pointer;
-}
-#difficulty, #levels {
-    color: white;
-    font-size: .7rem;
-}
-#difficulty {
-    margin: 0px 0px 5px 25px;
-}
-#levels span {
-    font-size: .55rem;
-    margin: 0px 15px 0px 15px;
-}
-
-#dots {
-    align-items: center;
-}
-#start-dot, #reset-dot {
-    height: 25px;
-    width: 25px;
-    background-color: white;
-    font-weight: 700;
-    border-radius: 50%;
-    margin-top: 20px;
-    cursor: pointer;
-}
-#start-dot:hover {
-    color: limegreen;
-    background: none;
-    border: 1px solid limegreen;
-}
-#reset-dot:hover {
-    color: lightcoral;
-    background: none;
-    border: 1px solid lightcoral;
-}
-#start-dot {
-    margin-left: 15px;
-    margin-right: 20px;
-}
-
-
-/* MEDIA INQUIRIES & DISABLE */
 
 .disabled {
     pointer-events: none;
 }
+/* BUTTONS */
 
-/* @media only screen and (max-width: 390px) {
-    body {
-        height: 1vh;
-        width: 1vw;
+.simon {
+    margin-top: 5%;
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    z-index: 1;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+}
+
+.button {
+    height: 350px;
+    width: 350px;
+    border-style: solid;
+    border-width: .5rem;
+    transition: 0.10s;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* YELLOW STYLES */
+
+.yellow {
+    border-top-left-radius: 100%;
+    background: rgb(255, 193, 37);
+    border-color:goldenrod;
+}
+.yellow:hover {
+    background: rgb(255, 208, 88);
+    border-color: rgb(255, 193, 37);
+    box-shadow: 0 0 10px 1px rgb(255, 193, 37);
+}
+.yellow:active,
+.yellow.visualized {
+    background: rgb(255, 202, 66);
+    border-color: rgb(255, 202, 66);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(255, 202, 66);
+}
+.yellow.slight {
+    border-top-left-radius: 100%;
+    background: rgb(239, 181, 34);
+    border-color: goldenrod;
+    box-shadow: 0 0 5px .5px rgb(239, 181, 34);
+}
+
+/* RED STYLES */
+.red {
+    border-top-right-radius: 100%;
+    background: red;
+    border-color: crimson;
+}
+.red:hover {
+    background: rgb(249, 73, 73);
+    border-color: red;
+    box-shadow: 0 0 10px 1px red;
+}
+.red:active,
+.red.visualized {
+    background: rgb(249, 73, 73);
+    border-color: rgb(249, 73, 73);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(249, 73, 73);
+}
+.red.slight {
+    border-top-right-radius: 100%;
+    background: rgb(235, 0, 0);
+    border-color: crimson;
+    box-shadow: 0 0 5px .5px rgb(235, 0, 0);
+}
+
+/* BLUE STYLES */
+.blue {
+    border-bottom-right-radius: 100%;
+    background: blue;
+    border: .5rem solid darkblue;
+}
+.blue:hover {
+    background: rgb(53, 53, 255);
+    border-color: blue;
+    box-shadow: 0 0 10px 1px blue;
+}
+.blue:active,
+.blue.visualized {
+    background: rgb(54, 74, 251);
+    border-color: rgb(54, 74, 251);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(54, 74, 251);
+}
+.blue.slight {
+    border-bottom-right-radius: 100%;
+    background: rgb(0, 0, 225);
+    border-color: darkblue;
+    box-shadow: 0 0 5px .5px rgb(0, 0, 225);
+}
+
+/* GREEN STYLES */
+.green {
+    border-bottom-left-radius: 100%;
+    background: green;
+    border-color: darkgreen;
+}
+.green:hover {
+    background: rgb(25, 174, 25);
+    border-color: green;
+    box-shadow: 0 0 10px 1px green;
+}
+.green:active,
+.green.visualized {
+    background: rgb(28, 192, 28);
+    border-color: rgb(28, 192, 28);
+    transform: translateY(3px);
+    box-shadow: 0 0 10px 2px rgb(28, 192, 28);
+}
+.green.slight {
+    border-bottom-left-radius: 100%;
+    background: rgb(0, 135, 0);
+    border-color: darkgreen;
+    box-shadow: 0 0 5px .5px rgb(0, 135, 0);
+}
+
+/* INNER CONTAINER (logo, expert mode, start/reset/instructions) */
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 100%;
+    height: 280px;
+    width: 280px;
+    background: black;
+    border: 5px solid white;
+    z-index: 2;
+}
+
+h1 {
+    color: white;
+    font-size: 2.7em;
+    margin-bottom: 2%;
+    margin-top: 0%;
+}
+
+.slider {
+    align-self: center;
+    width: 70px;
+    cursor: pointer;
+}
+.expert {
+    color: white;
+    font-size: .7rem;
+    margin-top: 0%;
+}
+
+.dots {
+    font-family: 'Dosis', sans-serif;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border: none;
+    font-weight: 900;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.start-dot:hover {
+    color: limegreen;
+    background: none;
+    border: 1px solid limegreen;
+}
+.reset-dot:hover {
+    color: lightcoral;
+    background: none;
+    border: 1px solid lightcoral;
+}
+.how-to-play:hover {
+    color: white;
+    background: none;
+    border: 1px solid white;
+}
+
+
+/* MODAL STYLING */
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 450px;
+    padding: 20px;
+    min-height: 250px;
+    position: absolute;
+    z-index: 4;
+    top: 20%;
+    margin-left: 25%;
+    margin-top: -6%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 3;
+}
+ 
+.hidden {
+    display: none;
+}
+
+
+
+
+
+@media (max-width: 1284px) {
+    .simon {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        max-width: 20%;
+        margin-left: 2%;
+        z-index: 1;
     }
 
-} */
+    .button {
+        height: 150px;
+        width: 150px;
+    }
+
+    .inner-container {
+        margin-top: 25px;
+        margin-left: 42px;
+        height: 180px;
+        width: 180px;
+    }
+
+    h1 {
+        font-size: 1.7em;
+    }
+
+    .slider {
+        margin-left: 2px;
+    }
+    .expert {
+        margin-left: 5px;
+    }
+
+    .modal {
+        width: 300px;
+        min-height: 100px;
+        position: absolute;
+        margin-left: 0%;
+    }
+    
+}
