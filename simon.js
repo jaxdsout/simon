@@ -24,9 +24,6 @@ howToPlay.addEventListener("click", openInstructions);
 function disableUser () {
   buttonContainer.classList.add("disabled");
 }
-function enableUser () {
-  buttonContainer.classList.remove("disabled")
-}
 disableUser(); // PREVENTS USER FROM MISFIRING A GAME OVER
 
 // CONTROLS
@@ -37,6 +34,7 @@ function setLevel () {
 function resetGame() {
   start.disabled = false;
   slider.disabled = false;
+  howToPlay.disabled = false;
   disableUser();
   sequence = [];
   userSequence = [];
@@ -46,12 +44,13 @@ function resetGame() {
 function startGame() {
   start.disabled = true;
   slider.disabled = true;
+  howToPlay.disabled = true;
   simonSays();
 }
 
 // GAMEFLOW
 function randomizer() {
-  let rando = buttons[Math.floor(Math.random() * buttons.length)];
+  const rando = buttons[Math.floor(Math.random() * buttons.length)];
   return rando;
 }
 
@@ -66,7 +65,7 @@ function simonSays() {
       visualize(color);
       }, (index + 1) * 300)
     });
-  enableUser();
+  buttonContainer.classList.remove("disabled");
 }
 
 // USES COLOR ARGUMENT TO AVOID MULTIPLE QUERY CALLS; THEN ADDS CERTAIN CSS STYLES, PLAYS THE SOUND, AND REMOVES CSS STYLE
@@ -96,9 +95,11 @@ buttonContainer.addEventListener('click', event => {
   verify(choice);
 });
 
-// PUSHES CHOICE TO USER SEQUENCE AND RUNS THROUGH VERIFY PROTOCOL; IF CORRECT & NO WIN, MORE SIMONSAYS
+
+// PUSHES CHOICE TO USER SEQUENCE & RUNS THROUGH VERIFY PROTOCOL
+// IF NO MESS UPS & NO WIN, PROCEED BACK TO SIMONSAYS
 function verify(choice) { 
-  const answer = userSequence.push(choice) - 1; // SUBTRACTING BY 1 TO TARGET THE LAST BUTTON 
+  const answer = userSequence.push(choice) - 1;
   if (userSequence[answer] !== sequence[answer]) {
     return gameOver();
   }
@@ -117,33 +118,26 @@ function verify(choice) {
   }
 }
 
-// END OF GAME HANDLERS 
+// END OF GAME HANDLERS & MODALS
 function gameOver() {
   loser.classList.remove("hidden");
   const error = document.querySelector("#sound-error");
   error.play();
-  overlay.classList.remove("hidden")
   resetGame();
 }
 
 function gameWin() {
   winner.classList.remove("hidden");
-  overlay.classList.remove("hidden");
   resetGame();
 }
 
 function ultimateWin() {
   bigWinner.classList.remove("hidden");
-  overlay.classList.remove("hidden");
   resetGame();
 }
 
-// MODALS //
-function closeModal () {
-  modals.forEach((modal) => {
-    modal.classList.add("hidden");
-  });
-  overlay.classList.add("hidden");
+function openInstructions () {
+  instructions.classList.remove("hidden");
 };
 
 modals.forEach((modal) => {
@@ -152,7 +146,13 @@ modals.forEach((modal) => {
   })
 });
 
+function closeModal () {
+  modals.forEach((modal) => {
+    modal.classList.add("hidden");
+  });
+};
+
 function openInstructions () {
   instructions.classList.remove("hidden");
-  overlay.classList.remove("hidden");
 };
+
