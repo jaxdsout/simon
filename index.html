@@ -12,36 +12,34 @@
     <audio preload="auto" id="sound-blue" src="sounds/blue.mp3"></audio>
     <audio preload="auto" id="sound-red" src="sounds/red.mp3"></audio>
     <audio preload="auto" id="sound-green" src="sounds/green.mp3"></audio>
+    <audio preload="auto" id="sound-error" src="sounds/error.mp3"></audio>    
     <title>SIMON</title>
 </head>
 <body>
 <div class="simon">
     <div class="button-container">
     <div>
-        <div class="button yellow" data-button="yellow"></div>
-        <div class="button green" data-button="green"></div>
+        <div class="button yellow" id="yellow"></div>
+        <div class="button green" id="green"></div>
     </div>
     <div>
-        <div class="button red" data-button="red"></div>
-        <div class="button blue" data-button="blue"></div>
+        <div class="button red" id="red"></div>
+        <div class="button blue" id="blue"></div>
     </div>
     </div>
-    <div class ="innerCircle">
+    <div class="inner-container">
         <h1>SIMON</h1>
-        <div id="controls">
-            <div id="slider-box">
-                <p id="difficulty">DIFFICULTY</p>
-                <input type="range" id="slider" min="1" max="3" value="1" step="1" />
-                <div id="levels">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
+        <div class="controls">
+                <div class="slider-container">
+                    <input type="range" class="slider" min="1" max="3" value="1" step="1" />
+                    <p class="expert">EXPERT MODES</p>
                 </div>
-            <div id="dots">
-                <button id="start-dot">S</button>
-                <button id="reset-dot">R</button>
-                <button id="how-to-play">?</button>
-            </div>
+                <p></p>
+                <div class="dot-container">
+                    <button class="dots start-dot">S</button>
+                    <button class="dots reset-dot">R</button>
+                    <button class="dots how-to-play">?</button>
+                </div>
         </div>
     </div>
 </div>

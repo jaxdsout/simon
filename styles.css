@@ -1,18 +1,18 @@
 
 body {
-    font-family: 'Dosis', sans-serif;
     background-color: black;
-    min-width: 70vw;
+    font-family: 'Dosis', sans-serif;
 }
 
-
+.disabled {
+    pointer-events: none;
+}
 /* BUTTONS */
 
 .simon {
+    margin-top: 5%;
     display: flex;
-    position: relative;
-    max-width: 50%;
-    align-content: center;
+    max-width: 100%;
     justify-content: center;
     z-index: 1;
 }
@@ -20,162 +20,154 @@ body {
 .button-container {
     display: flex;
     flex-direction: row;
-    flex-shrink: 0;
-    max-width: 40%;
-    position: relative;
     z-index: 1;
 }
 
 .button {
-    position: relative;
     height: 350px;
     width: 350px;
     border-style: solid;
-    border-width: 5px;
+    border-width: .5rem;
     transition: 0.10s;
     cursor: pointer;
     box-sizing: border-box;
 }
+
+/* YELLOW STYLES */
+
 .yellow {
     border-top-left-radius: 100%;
     background: rgb(255, 193, 37);
-    border: .5rem solid goldenrod;
+    border-color:goldenrod;
 }
 .yellow:hover {
-    background-color: rgb(255, 208, 88);
-    border: .5rem solid rgb(255, 193, 37);
+    background: rgb(255, 208, 88);
+    border-color: rgb(255, 193, 37);
     box-shadow: 0 0 10px 1px rgb(255, 193, 37);
 }
 .yellow:active,
 .yellow.visualized {
-    background-color: rgb(255, 208, 88);
-    border-color: rgb(255, 208, 88);
+    background: rgb(255, 202, 66);
+    border-color: rgb(255, 202, 66);
     transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(255, 208, 88);
+    box-shadow: 0 0 10px 2px rgb(255, 202, 66);
 }
+.yellow.slight {
+    border-top-left-radius: 100%;
+    background: rgb(239, 181, 34);
+    border-color: goldenrod;
+    box-shadow: 0 0 5px .5px rgb(239, 181, 34);
+}
+
+/* RED STYLES */
 .red {
     border-top-right-radius: 100%;
-    background-color: red;
-    border: .5rem solid crimson;
+    background: red;
+    border-color: crimson;
 }
 .red:hover {
-    background-color: rgb(249, 73, 73);
-    border: .5rem solid red;
+    background: rgb(249, 73, 73);
+    border-color: red;
     box-shadow: 0 0 10px 1px red;
 }
 .red:active,
 .red.visualized {
-    background-color: rgb(249, 73, 73);
+    background: rgb(249, 73, 73);
     border-color: rgb(249, 73, 73);
     transform: translateY(3px);
     box-shadow: 0 0 10px 2px rgb(249, 73, 73);
 }
+.red.slight {
+    border-top-right-radius: 100%;
+    background: rgb(235, 0, 0);
+    border-color: crimson;
+    box-shadow: 0 0 5px .5px rgb(235, 0, 0);
+}
+
+/* BLUE STYLES */
 .blue {
     border-bottom-right-radius: 100%;
-    background-color: blue;
+    background: blue;
     border: .5rem solid darkblue;
 }
 .blue:hover {
-    background-color: rgb(53, 53, 255);
-    border: .5rem solid blue;
+    background: rgb(53, 53, 255);
+    border-color: blue;
     box-shadow: 0 0 10px 1px blue;
 }
 .blue:active,
 .blue.visualized {
-    background-color: rgb(53, 53, 255);
-    border-color: rgb(53, 53, 255);
+    background: rgb(54, 74, 251);
+    border-color: rgb(54, 74, 251);
     transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(53, 53, 255);
+    box-shadow: 0 0 10px 2px rgb(54, 74, 251);
 }
+.blue.slight {
+    border-bottom-right-radius: 100%;
+    background: rgb(0, 0, 225);
+    border-color: darkblue;
+    box-shadow: 0 0 5px .5px rgb(0, 0, 225);
+}
+
+/* GREEN STYLES */
 .green {
     border-bottom-left-radius: 100%;
-    background-color: green;
-    border: .5rem solid darkgreen;
+    background: green;
+    border-color: darkgreen;
 }
 .green:hover {
-    background-color: rgb(25, 174, 25);
-    border: .5rem solid green;
+    background: rgb(25, 174, 25);
+    border-color: green;
     box-shadow: 0 0 10px 1px green;
 }
 .green:active,
 .green.visualized {
-    background-color: rgb(25, 174, 25);
-    border-color: rgb(25, 174, 25);
+    background: rgb(28, 192, 28);
+    border-color: rgb(28, 192, 28);
     transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(25, 174, 25);
+    box-shadow: 0 0 10px 2px rgb(28, 192, 28);
+}
+.green.slight {
+    border-bottom-left-radius: 100%;
+    background: rgb(0, 135, 0);
+    border-color: darkgreen;
+    box-shadow: 0 0 5px .5px rgb(0, 135, 0);
 }
 
-.green.blacklist {
-    background-color: rgb(149, 149, 149);
-    border-color: rgb(134, 134, 134);
-    transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(134, 134, 134);
-}
-.blue.blacklist {
-    background-color: rgb(111, 111, 111);
-    border-color: rgb(98, 98, 98);
-    transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(98, 98, 98);
-}
-.yellow.blacklist {
-    background-color: rgb(183, 183, 183);
-    border-color: rgb(200, 200, 200);
-    transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(200, 200, 200);
-} 
-.red.blacklist {
-    background-color: rgb(129, 129, 129);
-    border-color: rgb(104, 104, 104);
-    transform: translateY(3px);
-    box-shadow: 0 0 10px 2px rgb(200, 200, 200);
-}
-
-
-/* INNER RIM (logo, difficulty scale, start/reset. timer) */
-
-
-.innerCircle {
-    position: absolute;
+/* INNER CONTAINER (logo, expert mode, start/reset/instructions) */
+.inner-container {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin-top: 20%;
-    border-radius: 50%;
+    border-radius: 100%;
     height: 280px;
     width: 280px;
-    background: rgb(40, 40, 40);
+    background: black;
+    border: 5px solid white;
     z-index: 2;
 }
 
 h1 {
     color: white;
     font-size: 2.7em;
-}
-#slider-box {
-    margin-top: 0px;
-}
-#slider {
-    width: 100px;
-    cursor: pointer;
-}
-#difficulty, #levels {
-    color: white;
-    font-size: .7rem;
-}
-#difficulty {
-    margin-left: 0px;
-}
-#levels span {
-    font-size: .7rem;
+    margin-bottom: 2%;
+    margin-top: 0%;
 }
 
-#dots {
-    align-items: center;
+.slider {
+    align-self: center;
+    width: 70px;
+    cursor: pointer;
 }
-#start-dot, #reset-dot, #how-to-play {
+.expert {
+    color: white;
+    font-size: .7rem;
+    margin-top: 0%;
+}
+
+.dots {
     font-family: 'Dosis', sans-serif;
     height: 25px;
     width: 25px;
@@ -186,41 +178,37 @@ h1 {
     cursor: pointer;
 }
 
-#start-dot:hover {
+.start-dot:hover {
     color: limegreen;
     background: none;
     border: 1px solid limegreen;
 }
-#reset-dot:hover {
+.reset-dot:hover {
     color: lightcoral;
     background: none;
     border: 1px solid lightcoral;
 }
-#how-to-play:hover {
+.how-to-play:hover {
     color: white;
     background: none;
     border: 1px solid white;
 }
-.exit:hover {
-    color: rgb(0, 0, 0);
-    background: none;
-    border: 1px solid black;
-}
 
 
-/* */
+/* MODAL STYLING */
 
 .modal {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.4rem;
     width: 450px;
-    padding: 1.3rem;
+    padding: 20px;
     min-height: 250px;
     position: absolute;
     z-index: 4;
     top: 20%;
+    margin-left: 25%;
+    margin-top: -6%;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 15px;
@@ -238,14 +226,55 @@ h1 {
     backdrop-filter: blur(3px);
     z-index: 3;
 }
-  
-
-/* MEDIA INQUIRIES & DISABLE */
-
-.disabled {
-    pointer-events: none;
-}
+ 
 .hidden {
     display: none;
 }
 
+
+
+
+
+@media (max-width: 1284px) {
+    .simon {
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        max-width: 20%;
+        margin-left: 2%;
+        z-index: 1;
+    }
+
+    .button {
+        height: 150px;
+        width: 150px;
+    }
+
+    .inner-container {
+        margin-top: 25px;
+        margin-left: 42px;
+        height: 180px;
+        width: 180px;
+    }
+
+    h1 {
+        font-size: 1.7em;
+    }
+
+    .slider {
+        margin-left: 2px;
+    }
+    .expert {
+        margin-left: 5px;
+    }
+
+    .modal {
+        width: 300px;
+        min-height: 100px;
+        position: absolute;
+        margin-left: 0%;
+    }
+    
+}
