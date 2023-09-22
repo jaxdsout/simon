@@ -1,5 +1,6 @@
 let sequence = [];
 let userSequence = [];
+let buttons = ['yellow', 'red', 'green', 'blue'];
 let round = 0;
 let level;
 
@@ -50,83 +51,82 @@ function startGame() {
 
 // GAMEFLOW
 
-async function simonSays() {
-  disableUser();
-  round++;
-  sequence.push(randomizer());
-  await nextSimon(sequence);
-  setTimeout(() => {
-    enableUser()}, 600);
-}
-
-async function nextSimon(continuation) {
-  for (const color of continuation) {
-    await visualize(color);
-  }
-}
-
 function randomizer() {
-  const buttons = ['yellow', 'red', 'green', 'blue'];
   const rando = buttons[Math.floor(Math.random() * buttons.length)];
-  if (level === 1) return rando;
-  if (level === 2 || 3) {
-    console.log('level 2 sequence')
+  if (level === 1) {
+    return rando;
+  } else {
     for (let i = rando.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [rando[i], rando[j]] = [rando[j], rando[i]];
-    };
+    const j = Math.floor(Math.random() * (i + 1));
+    [rando[i], rando[j]] = [rando[j], rando[i]];
+    }
     return rando;
   }
 }
 
-function visualize(color) {
-  return new Promise((resolve) => {
-    const button = document.querySelector(`.${color}`);
-    const sound = document.querySelector(`#sound-${color}`);
-    if (level === 1 || 2) {
-      button.classList.add('visualized');
-      sound.play();
-      setTimeout(() => {
-        button.classList.remove('visualized');
-        resolve()}, 300);
-    }
-    if (level === 3) {
-      button.classList.add('blacklist');
-      sound.play();
-      setTimeout(() => {
-        button.classList.remove('blacklist');
-        resolve()}, 300);
-    }
-    }
-)}
+function simonSays() {
+  disableUser();
+  round++;
+  sequence.push(randomizer());
+  simonDoes(sequence);
+  enableUser();
+}
 
-function verify(choice) {
-  const index = userSequence.push(choice) - 1;
-  const sound = document.querySelector(`#sound-${choice}`);
-  sound.play();
+function simonDoes(simonSequence) {
+  simonSequence.forEach((color, index) => {
+    setTimeout(() => {
+      visualize(color);
+    }, (index + 1) * 500)
+  });
+}
+
+function visualize(color) {
+  const button = document.querySelector(`.${color}`);
+  const sound = document.querySelector(`#sound-${color}`);
+  if (level === 3) {
+    button.classList.add('blacklist');
+    sound.play();
+    setTimeout(() => {
+      button.classList.remove('blacklist');
+    }, 300);
+  } else {
+    button.classList.add('visualized');
+    sound.play();
+    setTimeout(() => {
+      button.classList.remove('visualized')
+    }, 300);
+  }
+}
+
+function verify(button) {
+  const index = userSequence.push(button) - 1;
   if (userSequence[index] !== sequence[index]) {
-    return gameOver()
+    gameOver();
+    return
   }
   if (userSequence.length === sequence.length) {
     if (userSequence.length === 6 && level === 3) {
-      return ultimateWin();
+      ultimateWin();
+      return
     }
     if (userSequence.length === 6) {
-      return gameWin();
+      gameWin();
+      return
     }
     userSequence = [];
     setTimeout(() => {
       simonSays();
-    }, 200);
-    return;
+    }, 800);
+    return
   }
 }
 
 buttonContainer.addEventListener('click', event => {
-  const {button} = event.target.dataset;
+  const { button } = event.target.dataset;
+  const sound = document.querySelector(`#sound-${button}`);
+  sound.play()
   if (button) verify(button);
 });
-
 
 // END OF GAME HANDLERS 
 
@@ -149,7 +149,6 @@ function ultimateWin() {
 }
 
 // MODALS //
-
 function closeModal () {
   instructions.classList.add("hidden");
   overlay.classList.add("hidden");
@@ -169,4 +168,3 @@ function openInstructions () {
   instructions.classList.remove("hidden");
   overlay.classList.remove("hidden");
 };
-
