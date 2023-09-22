@@ -207,11 +207,15 @@ h1 {
     position: absolute;
     z-index: 4;
     top: 20%;
-    margin-left: 25%;
-    margin-top: -6%;
+    margin-left: 28%;
+    margin-top: -5%;
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 15px;
+}
+
+#instructions {
+    margin-top: 2%;
 }
 
 .overlay {
@@ -231,10 +235,6 @@ h1 {
     display: none;
 }
 
-
-
-
-
 @media (max-width: 1284px) {
     .simon {
         margin-top: 5%;
@@ -243,7 +243,8 @@ h1 {
         justify-content: center;
         align-content: center;
         max-width: 20%;
-        margin-left: 2%;
+        margin-top: 10%;
+        margin-left: 18%;
         z-index: 1;
     }
 
@@ -252,9 +253,13 @@ h1 {
         width: 150px;
     }
 
+    .button-container {
+        margin-bottom: 2%;
+    }
+
     .inner-container {
         margin-top: 25px;
-        margin-left: 42px;
+        margin-left: 55px;
         height: 180px;
         width: 180px;
     }
@@ -274,7 +279,7 @@ h1 {
         width: 300px;
         min-height: 100px;
         position: absolute;
-        margin-left: 0%;
+        margin-left: 17%;
+        margin-top: -15%;
     }
-    
 }

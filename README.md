@@ -68,12 +68,11 @@ If the user succeeds, the series will become progressively longer and more compl
 
 ## STRETCH GOALS
     1. Institue countdown clock for each turn
-    2. Have Difficulty 2 & 3 to make game even harder
-        a. Level 2: tiles cannot be repeated more than 2x; time is -5 seconds from original
-        b. Level 3: tiles can never be repeated; time is -5 seconds from original
+    2. Have Difficulty 2 & 3 to make game even harder (more buttons to click & tiles get less noticeable)
     3. Instead of timer, maybe have tiles disappear into black (possible level 3 option)
 
 ## HURDLES
-    1. Largest hurdle remaining is centering divs inside one another. Altered final layout so it's responsive. CSS is not my best friend yet.
-    2. Largest hurdle when coding in JS was creating flow for game displaying color, waiting for user, user responding, verifying response, then repeating cycle. I tried for loops, while loops, and even dabbled with async and Promises (but didn't fully understand what was going on there). Ultimately, decided for setTimeout as it was easiest to take apart and edit for me.
-    3. A hurdle early on in the process was psuedocoding. I tried to jump right into making the game before hashing out what coding techniques/methods were not in my wheelhouse (which is already limited). This left me scratching my head on how to acheive certain results. Ultimately, I had to rewrite my enter code but it worked out for the better.
+    1. Biggest hurdle was choosing which way to run gameflow as there were many (setTimeout, setInterval, async, for loops, etc). Ultimately went with setTimeout as it gave me more flexixibility and I understood it. This process is where I got stuck in the development of the game. Required lots of reading and throwing stuff at the wall. See point 2.
+    2. A hurdle early on in the process was psuedocoding. It would have been more helpful to find all the gaps in my knowledge first rather than get stuck for hours until something worked.
+    3. A styling hurdle was centering the divs on top of one another. To make the layout response, I ultimately changed the design.
+   

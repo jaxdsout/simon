@@ -9,6 +9,7 @@ const reset = document.querySelector(".reset-dot");
 const howToPlay = document.querySelector(".how-to-play");
 const slider = document.querySelector(".slider");
 const buttonContainer = document.querySelector('.button-container');
+const modals = document.querySelectorAll(".modal")
 const overlay = document.querySelector(".overlay");
 const instructions = document.querySelector("#instructions");
 const loser = document.querySelector("#you-lose");
@@ -51,27 +52,24 @@ function startGame() {
 // GAMEFLOW
 function randomizer() {
   let rando = buttons[Math.floor(Math.random() * buttons.length)];
-  let lastColor;
-  if (rando === lastColor && (level === 2 || level === 3)) {
-    return rando;
-  } else {
-    lastColor = rando;
-    return rando;
-  }
+  return rando;
 }
 
+// DISABLES USER INPUT; ADVANCES ROUND & PUSHES ANOTHER RANDOM BUTTON TO SEQUENCE; RUNS VISUALIZE THROUGH EACH COLOR; ENABLES USER INPUT 
+// TIMEOUT UTILIZES AN INDEX TO KEEP PLACE IN LINE
 function simonSays() { 
   disableUser();
   round++;
   sequence.push(randomizer());
   sequence.forEach((color, index) => {
-      setTimeout(() => {
-        visualize(color);
+    setTimeout(() => {
+      visualize(color);
       }, (index + 1) * 300)
     });
   enableUser();
 }
 
+// USES COLOR ARGUMENT TO AVOID MULTIPLE QUERY CALLS; THEN ADDS CERTAIN CSS STYLES, PLAYS THE SOUND, AND REMOVES CSS STYLE
 function visualize(color) {
   const button = document.querySelector(`.${color}`); 
   const sound = document.querySelector(`#sound-${color}`);
@@ -89,8 +87,8 @@ function visualize(color) {
     }, 180);
   }
 }
-// USES COLOR ARGUMENT TO AVOID MULTIPLE QUERY CALLS; THEN ADDS CERTAIN CSS STYLES, PLAYS THE SOUND, AND REMOVES CSS STYLE
 
+// HANDLES BUTTON CLICKS BY TARGETING ID OF EVENT, PUSHES CHOICE TO USER SEQUENCE, THEN SENDS TO VERIFY
 buttonContainer.addEventListener('click', event => {
   const choice = event.target.id;
   const sound = document.querySelector(`#sound-${choice}`);
@@ -98,6 +96,7 @@ buttonContainer.addEventListener('click', event => {
   verify(choice);
 });
 
+// GRABS THE LAST CHOICE AND RUNS THROUGH VERIFY PROTOCOL; IF CORRECT & NO WIN, MORE SIMONSAYS
 function verify(choice) { 
   const answer = userSequence.push(choice) - 1; // SUBTRACTING BY 1 TO TARGET THE LAST BUTTON 
   if (userSequence[answer] !== sequence[answer]) {
@@ -141,18 +140,16 @@ function ultimateWin() {
 
 // MODALS //
 function closeModal () {
-  instructions.classList.add("hidden");
+  modals.forEach((modal) => {
+    modal.classList.add("hidden");
+  });
   overlay.classList.add("hidden");
-  loser.classList.add("hidden");
-  winner.classList.add("hidden");
-  bigWinner.classList.add("hidden");
 };
 
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && 
-  (!instructions.classList.contains("hidden") || loser.classList.contains("hidden") || winner.classList.contains("hidden") || bigWinner.classList.contains("hidden")) ) {
-    closeModal();
-  }
+modals.forEach((modal) => {
+  modal.addEventListener("click", function () {
+  closeModal();
+  })
 });
 
 function openInstructions () {
