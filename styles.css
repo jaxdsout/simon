@@ -2,12 +2,13 @@ body {
     background-color: black;
     font-family: 'Dosis', sans-serif;
 }
-
 .disabled {
     pointer-events: none;
 }
-/* BUTTONS */
 
+
+
+/* BUTTONS */
 .simon {
     margin-top: 5%;
     display: flex;
@@ -131,8 +132,8 @@ body {
     box-shadow: 0 0 5px .5px rgb(0, 135, 0);
 }
 
-/* INNER CONTAINER (logo, expert mode, start/reset/instructions) */
-.inner-container {
+/* CONTROL CONTAINER */
+.control-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,7 +193,6 @@ h1 {
 
 
 /* MODAL STYLING */
-
 .modal {
     display: flex;
     flex-direction: column;
@@ -209,11 +209,11 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 15px;
 }
-
 .hidden {
     display: none;
 }
 
+/* MOBILE RESPONSIVENESS */
 @media (max-width: 1284px) {
     .simon {
         margin-top: 5%;
@@ -233,7 +233,7 @@ h1 {
     .button-container {
         margin-bottom: 2%;
     }
-    .inner-container {
+    .control-container {
         margin-top: 25px;
         margin-left: 55px;
         height: 180px;
