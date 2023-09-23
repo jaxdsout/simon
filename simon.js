@@ -45,6 +45,7 @@ function startGame() {
   start.disabled = true;
   slider.disabled = true;
   howToPlay.disabled = true;
+  setLevel();
   simonSays();
 }
 
@@ -77,7 +78,7 @@ function visualize(color) {
     sound.play();
     setTimeout(() => {
       button.classList.remove('slight');
-    }, 180);
+    }, 200);
   } else {
     button.classList.add('visualized');
     sound.play();
@@ -95,6 +96,7 @@ buttonContainer.addEventListener('click', event => {
   verify(choice);
 });
 
+
 // PUSHES CHOICE TO USER SEQUENCE & RUNS THROUGH VERIFY PROTOCOL
 // IF NO MESS UPS & NO WIN, PROCEED BACK TO SIMONSAYS
 function verify(choice) { 
@@ -106,7 +108,11 @@ function verify(choice) {
     if (userSequence.length === 20 && level === 3) {
       return ultimateWin();
     }
-    if (userSequence.length === 13) {
+    if (userSequence.length === 20 && level === 2) {
+      return gameWin();
+      
+    }
+    if (userSequence.length === 13 && level === 1) {
       return gameWin();
     }
     userSequence = [];
@@ -122,25 +128,21 @@ function gameOver() {
   loser.classList.remove("hidden");
   const error = document.querySelector("#sound-error");
   error.play();
-  overlay.classList.remove("hidden")
   resetGame();
 }
 
 function gameWin() {
   winner.classList.remove("hidden");
-  overlay.classList.remove("hidden");
   resetGame();
 }
 
 function ultimateWin() {
   bigWinner.classList.remove("hidden");
-  overlay.classList.remove("hidden");
   resetGame();
 }
 
 function openInstructions () {
   instructions.classList.remove("hidden");
-  overlay.classList.remove("hidden");
 };
 
 modals.forEach((modal) => {
@@ -153,5 +155,8 @@ function closeModal () {
   modals.forEach((modal) => {
     modal.classList.add("hidden");
   });
-  overlay.classList.add("hidden");
+};
+
+function openInstructions () {
+  instructions.classList.remove("hidden");
 };
