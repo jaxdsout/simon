@@ -45,6 +45,7 @@ function startGame() {
   start.disabled = true;
   slider.disabled = true;
   howToPlay.disabled = true;
+  setLevel();
   simonSays();
 }
 
@@ -77,7 +78,7 @@ function visualize(color) {
     sound.play();
     setTimeout(() => {
       button.classList.remove('slight');
-    }, 180);
+    }, 200);
   } else {
     button.classList.add('visualized');
     sound.play();
@@ -107,7 +108,11 @@ function verify(choice) {
     if (userSequence.length === 20 && level === 3) {
       return ultimateWin();
     }
-    if (userSequence.length === 13) {
+    if (userSequence.length === 20 && level === 2) {
+      return gameWin();
+      
+    }
+    if (userSequence.length === 13 && level === 1) {
       return gameWin();
     }
     userSequence = [];
@@ -155,4 +160,3 @@ function closeModal () {
 function openInstructions () {
   instructions.classList.remove("hidden");
 };
-
