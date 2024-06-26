@@ -6,8 +6,6 @@ body {
     pointer-events: none;
 }
 
-
-
 /* BUTTONS */
 .simon {
     margin-top: 5%;
@@ -175,20 +173,17 @@ h1 {
     border-radius: 50%;
     cursor: pointer;
 }
-.start-dot:hover {
-    color: limegreen;
-    background: none;
-    border: 1px solid limegreen;
-}
-.reset-dot:hover {
-    color: lightcoral;
-    background: none;
-    border: 1px solid lightcoral;
-}
-.how-to-play:hover {
+
+
+
+.start-dot:hover, .how-to-play:hover, .reset-dot:hover {
     color: white;
     background: none;
     border: 1px solid white;
+}
+
+.start-dot:hover svg g path, .how-to-play:hover svg g path, .reset-dot:hover svg g path {
+    fill: #FFFFFF;
 }
 
 
