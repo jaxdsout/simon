@@ -82,37 +82,57 @@ function userClicked(event) {
   const choice = event.target.id;
   const sound = document.querySelector(`#sound-${choice}`);
   sound.play();
-  setTimeout(() => {
-    verify(choice)
-  }, 200)
-}
+  verify(choice);
+});
 
+// PUSHES CHOICE TO USER SEQUENCE & RUNS THROUGH VERIFY PROTOCOL
+// IF NO MESS UPS & NO WIN, PROCEED BACK TO SIMONSAYS
 function verify(choice) { 
   const answer = userSequence.push(choice) - 1;
 
   if (userSequence[answer] !== sequence[answer]) {
-    loser.classList.remove("hidden");
-    const error = document.querySelector("#sound-error");
-    error.play();
-    resetGame();
+    return gameOver();
   }
-
-  else if (userSequence.length === sequence.length) {
-    if (userSequence.length === 5 && level === 3) {
-      bigWinner.classList.remove("hidden");
-      resetGame();
-    } else if (userSequence.length === 5 && level === 2 || userSequence.length === 4 && level === 1) {
-      winner.classList.remove("hidden");
-      resetGame();
-    } else {
-      setTimeout(() => {
-        simonSays()
-      }, 500)
+  if (userSequence.length === sequence.length) {
+    if (userSequence.length === 20 && level === 3) {
+      return ultimateWin();
     }
-    buttonContainer.removeEventListener('click', userClicked);
+    if (userSequence.length === 13) {
+      return gameWin();
+    }
+    userSequence = [];
+    setTimeout(() => {
+      simonSays();
+    }, 600);
+    return;
   }
 }
 
+// END OF GAME HANDLERS & MODALS
+function gameOver() {
+  loser.classList.remove("hidden");
+  const error = document.querySelector("#sound-error");
+  error.play();
+  overlay.classList.remove("hidden")
+  resetGame();
+}
+
+function gameWin() {
+  winner.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  resetGame();
+}
+
+function ultimateWin() {
+  bigWinner.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+  resetGame();
+}
+
+function openInstructions () {
+  instructions.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
 
 modals.forEach((modal) => {
   modal.addEventListener("click", function () {
@@ -124,4 +144,6 @@ function closeModal () {
   modals.forEach((modal) => {
     modal.classList.add("hidden");
   });
+  overlay.classList.add("hidden");
 };
+
