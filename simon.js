@@ -8,7 +8,7 @@ const overlay = document.querySelector(".overlay");
 const instructions = document.querySelector("#instructions");
 const loser = document.querySelector("#you-lose");
 const winner = document.querySelector('#you-win');
-const bigWinner = document.querySelector("#big-win");
+const bigWinner = document.querySelector('#big-win');
 
 slider.addEventListener("input", setLevel);
 reset.addEventListener("click", resetGame)
@@ -64,10 +64,10 @@ function visualize(color) {
   return new Promise(resolve => {
     const button = document.querySelector(`.${color}`);
     const sound = document.querySelector(`#sound-${color}`);
-    button.classList.add(level === 3 ? 'slight' : 'visualized');
+    button.classList.add('visualized');
     sound.play();
     setTimeout(() => {
-      button.classList.remove(level === 3 ? 'slight' : 'visualized');
+      button.classList.remove('visualized');
       setTimeout(resolve, 200); 
     }, 500); 
   });
@@ -98,11 +98,11 @@ function verify(choice) {
   }
 
   else if (userSequence.length === sequence.length) {
-    if (userSequence.length === 5 && level === 3) {
-      bigWinner.classList.remove("hidden");
-      resetGame();
-    } else if (userSequence.length === 5 && level === 2 || userSequence.length === 4 && level === 1) {
+    if (userSequence.length === 13 && level === 1) {
       winner.classList.remove("hidden");
+      resetGame();
+    } else if (userSequence.length === 20 && level === 2) {
+      bigWinner.classList.remove("hidden");
       resetGame();
     } else {
       setTimeout(() => {
