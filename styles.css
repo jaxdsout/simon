@@ -48,12 +48,7 @@ body {
     transform: translateY(3px);
     box-shadow: 0 0 10px 2px rgb(255, 202, 66);
 }
-.yellow.slight {
-    border-top-left-radius: 100%;
-    background: rgb(239, 181, 34);
-    border-color: goldenrod;
-    box-shadow: 0 0 5px .5px rgb(239, 181, 34);
-}
+
 
 /* RED STYLES */
 .red {
@@ -73,12 +68,7 @@ body {
     transform: translateY(3px);
     box-shadow: 0 0 10px 2px rgb(249, 73, 73);
 }
-.red.slight {
-    border-top-right-radius: 100%;
-    background: rgb(235, 0, 0);
-    border-color: crimson;
-    box-shadow: 0 0 5px .5px rgb(235, 0, 0);
-}
+
 
 /* BLUE STYLES */
 .blue {
@@ -98,12 +88,7 @@ body {
     transform: translateY(3px);
     box-shadow: 0 0 10px 2px rgb(54, 74, 251);
 }
-.blue.slight {
-    border-bottom-right-radius: 100%;
-    background: rgb(0, 0, 225);
-    border-color: darkblue;
-    box-shadow: 0 0 5px .5px rgb(0, 0, 225);
-}
+
 
 /* GREEN STYLES */
 .green {
@@ -123,12 +108,7 @@ body {
     transform: translateY(3px);
     box-shadow: 0 0 10px 2px rgb(28, 192, 28);
 }
-.green.slight {
-    border-bottom-left-radius: 100%;
-    background: rgb(0, 135, 0);
-    border-color: darkgreen;
-    box-shadow: 0 0 5px .5px rgb(0, 135, 0);
-}
+
 
 /* CONTROL CONTAINER */
 .control-container {
